@@ -4,19 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
-    <!-- iOS PWA設定 -->
+    <!-- iOS PWA設定 (キャッシュ対策強化版) -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="AutoCare">
     <meta name="format-detection" content="telephone=no">
     
     <!-- Android PWA設定 -->
     <meta name="mobile-web-app-capable" content="yes">
-    
+    <meta name="theme-color" content="#1e293b">
+
     <title>AutoCare</title>
     
-    <!-- iPhone用アイコン (軽量PNG: 黒背景に白の車) -->
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8h9S1wAAAAI3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiM0X2qwAAAAqkURBVHja7ZbZDsIwDEW7lKJl38f//6gjIY5CXdqJ8ZL3FBRETrw4A2O/73r9gH7Q3y0AEwA2x731B2+9B+D77S9fBvD+8ucvAni1/uT7r39/fV794b3uX/xun9frK8F7l6f2yzoTvNdK8N4owXvT13uXp/bLOBO810rw3ijBe9O/e6/7F7/b5/X6SvDe5an9ss4E77USvDdK8N709d7lqf0yziR47yF4b/oX7w184AP8wQcCBG6hQgK3+gAAAABJRU5ErkJggg==" />
+    <!-- アイコン設定: 黒背景に白い車のシルエット (PNG Base64) -->
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAEACAMAAABqkp0+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8+7P6yAAAALXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtL70w/gAAAAFiS0dEAIgFHUgAAAAJcEhZcwAALiMAAC4jAXilP3YAAAFTSURBVHja7dfrUgIxDAbgTymCt4rXKqjg/V/NsmHZ0p22K85k/p9N0hZ+zExXAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BaT8Sg+11V927bd9n1R9H19rKu2nV73fd92XX2oq7YdXd/1Xd/Vh7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq2/Fd3w/DcH9XH+qqbcf3d/04jo939aGu2nZ8f9eP4/h4Vx/qqm3H93f9OI6Pd/Whrtp2fH/Xj+P4eFcf6qptx/d3/TiOP9WHumrb8f1dP47jQ32oq7Yd39/14ziO43hXH+qqbcf3d/04juM43teHumrb8f1dP47jOI739aGu2nZ8f9eP4ziO4319qJv2nd/18zzf1wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA3+wL8tEP9Al+5bQAAAABJRU5ErkJggg==" />
+    <link rel="apple-touch-icon" sizes="192x192" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAEACAMAAABqkp0+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8+7P6yAAAALXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtL70w/gAAAAFiS0dEAIgFHUgAAAAJcEhZcwAALiMAAC4jAXilP3YAAAFTSURBVHja7dfrUgIxDAbgTymCt4rXKqjg/V/NsmHZ0p22K85k/p9N0hZ+zExXAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BaT8Sg+11V927bd9n1R9H19rKu2nV73fd92XX2oq7YdXd/1Xd/Vh7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq2/Fd3w/DcH9XH+qqbcf3d/04jo939aGu2nZ8f9eP4/h4Vx/qqm3H93f9OI6Pd/Whrtp2fH/Xj+P4eFcf6qptx/d3/TiOP9WHumrb8f1dP47jQ32oq7Yd39/14ziO43hXH+qqbcf3d/04juM43teHumrb8f1dP47jOI739aGu2nZ8f9eP4ziO4319qJv2nd/18zzf1wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA3+wL8tEP9Al+5bQAAAABJRU5ErkJggg==" />
+    <link rel="apple-touch-icon-precomposed" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAAEACAMAAABqkp0+AAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAhFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8+7P6yAAAALXRSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiMkJSYnKCkqKywtL70w/gAAAAFiS0dEAIgFHUgAAAAJcEhZcwAALiMAAC4jAXilP3YAAAFTSURBVHja7dfrUgIxDAbgTymCt4rXKqjg/V/NsmHZ0p22K85k/p9N0hZ+zExXAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA/BaT8Sg+11V927bd9n1R9H19rKu2nV73fd92XX2oq7YdXd/1Xd/Vh7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq29H1Xd/13TDch7pq2/Fd3w/DcH9XH+qqbcf3d/04jo939aGu2nZ8f9eP4/h4Vx/qqm3H93f9OI6Pd/Whrtp2fH/Xj+P4eFcf6qptx/d3/TiOP9WHumrb8f1dP47jQ32oq7Yd39/14ziO43hXH+qqbcf3d/04juM43teHumrb8f1dP47jOI739aGu2nZ8f9eP4ziO4319qJv2nd/18zzf1wcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAOA3+wL8tEP9Al+5bQAAAABJRU5ErkJggg==" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -38,19 +41,25 @@
       }
       .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
       
-      /* モーダルを画面上部に固定 (上から15%) */
+      /* モーダルを画面上部(20%)に固定し、スワイプ不要にする */
       .modal-overlay {
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
         z-index: 9999;
         display: flex;
-        align-items: flex-start;
+        align-items: flex-start; /* 上寄せ */
         justify-content: center;
-        padding-top: 15vh;
+        padding-top: 15vh; /* 画面上部から15%の位置 */
         backdrop-filter: blur(4px);
       }
       
+      .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      /* Date Input Styling */
       .date-input-container {
         position: relative;
         width: 100%; height: 54px;
@@ -191,10 +200,9 @@
 
             const statusItems = useMemo(() => {
                 return Object.keys(INTERVALS).filter(t => t !== MaintenanceType.OTHER).map(type => {
-                    // 最新のログを取得（日付文字列で比較）
                     const typeLogs = logs
                         .filter(l => l.vehicleId === vehicle.id && l.type === type)
-                        .sort((a, b) => b.date.localeCompare(a.date));
+                        .sort((a, b) => b.date.localeCompare(a.date)); // Sort by date desc
 
                     const lastLog = typeLogs[0];
                     const config = INTERVALS[type];
@@ -539,7 +547,7 @@
                 
                 if (typeLogs.length > 0) {
                     // 最新のログ(typeLogs[0])を見つけ、その日付を上書きする
-                    const targetId = typeLogs[0].id;
+                    const targetId = typeLogs[typeLogs.length - 1].id;
                     const updatedLogs = logs.map(l => l.id === targetId ? { ...l, date: date } : l);
                     setLogs(updatedLogs);
                 } else {
@@ -553,38 +561,4 @@
             if (!activeVehicle && vehicles.length > 0) setActiveId(vehicles[0].id);
 
             const renderContent = () => {
-                if (vehicles.length === 0 || view === 'vehicles') return <VehicleManager vehicles={vehicles} logs={logs} activeVehicleId={activeId} onSetActive={setActiveId} onAddVehicle={v => {setVehicles([...vehicles, v]); setActiveId(v.id);}} onUpdateVehicle={v => setVehicles(vehicles.map(x => x.id === v.id ? v : x))} onDeleteVehicle={id => { setVehicles(vehicles.filter(v => v.id !== id)); setLogs(logs.filter(l => l.vehicleId !== id)); }} onRestoreData={handleRestore} />;
-                if (view === 'logs') return <MaintenanceList logs={logs} vehicle={activeVehicle} onAddLog={l => setLogs([l, ...logs])} onDeleteLog={id => setLogs(logs.filter(l => l.id !== id))} />;
-                if (view === 'advisor') return <AiAdvisor vehicle={activeVehicle} logs={logs} />;
-                return <Dashboard vehicle={activeVehicle} allVehicles={vehicles} logs={logs} onQuickAdd={handleQuickAdd} onSwitchVehicle={setActiveId} />;
-            };
-
-            const Nav = ({ mobile }) => {
-                const Cls = mobile ? "flex flex-col items-center gap-1 p-2 text-xs" : "flex items-center gap-3 px-4 py-3 rounded-xl font-bold mb-1";
-                const Act = mobile ? "text-blue-600" : "bg-slate-900 text-white shadow-lg";
-                const Inact = mobile ? "text-slate-400" : "text-slate-500 hover:bg-slate-100";
-                const Btn = ({ v, i, l }) => <button onClick={() => setView(v)} className={`${Cls} ${view === v ? Act : Inact}`}>{i}<span>{l}</span></button>;
-                return <>{[['dashboard',<LayoutDashboard size={20}/>,'ホーム'],['logs',<Wrench size={20}/>,'履歴'],['advisor',<Sparkles size={20}/>,'AI'],['vehicles',<Car size={20}/>,'ガレージ']].map(a => <Btn key={a[0]} v={a[0]} i={a[1]} l={a[2]} />)}</>;
-            };
-
-            return (
-                <div className="min-h-screen flex flex-col md:flex-row">
-                    <div className="md:hidden bg-white border-b p-4 sticky top-0 z-30 flex justify-between items-center shadow-sm">
-                        <h1 className="font-bold text-lg">AutoCare</h1>
-                        {activeVehicle && <span className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600">{activeVehicle.make} {activeVehicle.model}</span>}
-                    </div>
-                    <aside className="hidden md:flex flex-col w-64 bg-white border-r h-screen sticky top-0 p-4">
-                        <h1 className="text-2xl font-extrabold mb-8 px-4">AutoCare</h1>
-                        <Nav mobile={false} />
-                    </aside>
-                    <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen"><div className="max-w-xl mx-auto h-full">{renderContent()}</div></main>
-                    <nav className="md:hidden fixed bottom-0 w-full bg-white border-t flex justify-around p-2 pb-safe z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]"><Nav mobile={true} /></nav>
-                </div>
-            );
-        };
-
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<App />);
-    </script>
-</body>
-</html>
+                if (vehicles.length === 0 || view === 'vehicles') return <VehicleManager vehicles={vehicles} logs={logs} activeVehicleId={activeId} onSetActive={setActiveId} onAddVehicle={v => {setVehicles([...vehicles, v]);
