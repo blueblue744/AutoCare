@@ -3,402 +3,584 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- iOS PWA設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="AutoCare">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android PWA設定 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2563eb">
+    
     <title>AutoCare</title>
     
-    <!-- 軽量アイコン (黒背景に白の車) -->
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADICAMAAACahl6sAAAAbFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8h9S1wAAAAI3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiM0X2qwAAABYUlEQVR4nO3d207DMAyF4Yy26YKW/3/lFhCK0yZt0wZV3wuRfAm+OHEOAgAAAAAAAAAAAAAAAAAAAAAAAAAA4F/RNE3f61NdtW3b9rrvi6Lv62NdtV31uu/7tuvqQ121XfW6ruu7+lBXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+1BXbVe9vuu7vhuG+wMAAAAAAAAAAAAAAAAAAAD4t2+O2RF8k/92OAAAAABJRU5ErkJggg==" />
+    <!-- アイコン設定 (iOS & Android対応) -->
+    <!-- 確実に変更を反映させるため、安定した外部CDNの画像を使用 -->
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/3202/3202926.png">
+    <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3202/3202926.png">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-    
     <style>
-      body { font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; background-color: #f8fafc; }
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+        background-color: #f8fafc;
+      }
       .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
-      @keyframes fadeIn { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.98); }
+        to { opacity: 1; transform: scale(1); }
+      }
       .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
-      /* モーダル上部固定 */
-      .modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0,0,0,0.6); z-index: 99; display: flex; align-items: flex-start; justify-content: center; padding-top: 15vh; backdrop-filter: blur(4px); }
-      /* 日付入力 */
-      .date-box { position: relative; width: 100%; height: 50px; background: #f1f5f9; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1.2rem; }
-      .date-input { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; }
+      
+      /* モーダルを画面上部に固定 (スワイプ不要・上から15%の位置) */
+      .modal-overlay {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        display: flex;
+        align-items: flex-start; /* 上寄せ */
+        justify-content: center;
+        padding-top: 15vh;
+        backdrop-filter: blur(4px);
+      }
+      
+      /* 日付入力のスタイル */
+      .date-input-container {
+        position: relative;
+        width: 100%; height: 54px;
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        border: 1px solid #e2e8f0;
+        display: flex; align-items: center; justify-content: center;
+        overflow: hidden;
+      }
+      .date-input-display {
+        position: absolute; pointer-events: none;
+        font-weight: 700; font-size: 1.25rem;
+        color: #1e293b; z-index: 10;
+      }
+      input[type="date"].custom-date-input {
+        appearance: none; -webkit-appearance: none;
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0; cursor: pointer; z-index: 20;
+      }
     </style>
-
     <script type="importmap">
     {
       "imports": {
+        "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
         "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
         "react": "https://aistudiocdn.com/react@^19.2.0",
         "react/": "https://aistudiocdn.com/react@^19.2.0/",
-        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client",
-        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
-        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0"
+        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client"
       }
     }
     </script>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 antialiased">
     <div id="root"></div>
+
     <script type="text/babel" data-type="module">
         import React, { useState, useEffect, useMemo, useRef } from 'react';
         import ReactDOM from 'react-dom/client';
-        import { LayoutDashboard, Car, Wrench, Sparkles, Plus, CheckCircle2, AlertCircle, Clock, Droplets, Disc, RefreshCw, Calendar, Filter, Wind, Fan, Thermometer, X, Trash2, Send, Bot, User, Loader2, Key, Search, Check, ChevronDown, Download, Upload, Save } from 'lucide-react';
+        import { 
+            LayoutDashboard, Car, Wrench, Sparkles, PlusCircle, 
+            CheckCircle2, AlertCircle, Clock, Droplets, Disc, 
+            RefreshCw, Calendar, Plus, Filter, Wind, Fan, 
+            Thermometer, X, Trash2, Send, Bot, User, Loader2, 
+            Key, Search, AlertTriangle, Check, ChevronDown, Download, Upload, Save
+        } from 'lucide-react';
         import { GoogleGenAI } from "@google/genai";
         import ReactMarkdown from 'react-markdown';
 
-        // --- Constants & Utilities ---
-        const TYPES = {
-            CAR_WASH: '洗車', TIRE: 'タイヤ空気圧', OIL: 'オイル交換', OIL_F: 'オイルフィルター',
-            WIPER: 'ワイパーゴム', AIR_F: 'エアフィルター', AC_F: 'エアコンフィルター', 
-            TIRE_R: 'タイヤローテ', BRAKE: 'ブレーキフルード', COOLANT: '冷却水', 
-            INSP: '車検・点検', BAT: 'バッテリー', ETC: 'その他'
+        const MaintenanceType = {
+            CAR_WASH: '洗車', TIRE_PRESSURE: 'タイヤ空気圧', OIL_CHANGE: 'オイル交換',
+            OIL_FILTER: 'オイルフィルター', WIPER: 'ワイパーゴム', AIR_FILTER: 'エアフィルター',
+            AC_FILTER: 'エアコンフィルター', TIRE_ROTATION: 'タイヤローテ', BRAKE_FLUID: 'ブレーキフルード',
+            COOLANT: '冷却水', INSPECTION: '車検・点検', BATTERY: 'バッテリー', OTHER: 'その他'
         };
-        const ICONS = {
-            [TYPES.CAR_WASH]: <Droplets size={24}/>, [TYPES.TIRE]: <Disc size={24}/>,
-            [TYPES.OIL]: <Wrench size={24}/>, [TYPES.OIL_F]: <Filter size={24}/>,
-            [TYPES.WIPER]: <RefreshCw size={24}/>, [TYPES.AIR_F]: <Wind size={24}/>,
-            [TYPES.AC_F]: <Fan size={24}/>, [TYPES.TIRE_R]: <RefreshCw size={24} className="rotate-90"/>,
-            [TYPES.BRAKE]: <Droplets size={24} className="text-red-400"/>, [TYPES.COOLANT]: <Thermometer size={24}/>,
-            [TYPES.INSP]: <Calendar size={24}/>, [TYPES.BAT]: <div className="font-bold text-xs border rounded px-1">BAT</div>,
-            [TYPES.ETC]: <Clock size={24}/>
+
+        const VEHICLES_KEY = 'autocare_vehicles';
+        const LOGS_KEY = 'autocare_logs';
+        const API_KEY_STORAGE = 'autocare_api_key';
+
+        const saveVehicles = (vehicles) => localStorage.setItem(VEHICLES_KEY, JSON.stringify(vehicles));
+        const getVehicles = () => JSON.parse(localStorage.getItem(VEHICLES_KEY) || '[]');
+        const saveLogs = (logs) => localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+        const getLogs = () => JSON.parse(localStorage.getItem(LOGS_KEY) || '[]');
+        const saveApiKey = (key) => localStorage.setItem(API_KEY_STORAGE, key);
+        const getApiKey = () => localStorage.getItem(API_KEY_STORAGE);
+
+        const seedData = () => {
+            const initialVehicles = [{
+                id: 'v1', make: 'トヨタ', model: 'プリウス', year: 2020,
+                currentMileage: 45000, imageUrl: 'https://picsum.photos/400/200'
+            }];
+            const today = new Date().toISOString().split('T')[0];
+            const initialLogs = [{
+                id: 'l1', vehicleId: 'v1', date: today, type: MaintenanceType.CAR_WASH,
+                cost: 1000, mileage: 44500, notes: '初期データ', shopName: 'ENEOS'
+            }];
+            saveVehicles(initialVehicles);
+            saveLogs(initialLogs);
+            return { vehicles: initialVehicles, logs: initialLogs };
         };
+
+        const getClient = (apiKey) => apiKey ? new GoogleGenAI({ apiKey }) : null;
+
+        const getMaintenanceAdvice = async (vehicle, query, history, apiKey) => {
+            const ai = getClient(apiKey);
+            if (!ai) return "APIキーが設定されていません。";
+            const recentHistory = history
+                .filter(h => h.vehicleId === vehicle.id)
+                .sort((a, b) => b.date.localeCompare(a.date))
+                .slice(5)
+                .map(h => `- ${h.date}: ${h.type} (${h.mileage} km)`)
+                .join('\n');
+            const prompt = `整備士アシスタントとして回答してください。\n車両: ${vehicle.make} ${vehicle.model} (${vehicle.currentMileage}km)\n履歴:\n${recentHistory}\n質問: ${query}`;
+            try {
+                const response = await ai.models.generateContent({
+                    model: "gemini-2.5-flash", contents: prompt,
+                });
+                return response.text || "応答できませんでした。";
+            } catch (error) { return "エラーが発生しました。APIキーを確認してください。"; }
+        };
+
+        const getTodayString = () => {
+            const d = new Date();
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+        };
+
         const INTERVALS = {
-            [TYPES.CAR_WASH]: { d: 30, l: '1ヶ月' }, [TYPES.TIRE]: { d: 30, l: '1ヶ月' },
-            [TYPES.OIL]: { d: 180, k: 5000, l: '半年/5000km' }, [TYPES.OIL_F]: { d: 365, k: 10000, l: '1年/1万km' },
-            [TYPES.WIPER]: { d: 365, l: '1年' }, [TYPES.AIR_F]: { d: 730, k: 30000, l: '2年/3万km' },
-            [TYPES.AC_F]: { d: 365, k: 10000, l: '1年/1万km' }, [TYPES.TIRE_R]: { d: 365, k: 10000, l: '1年/1万km' },
-            [TYPES.BRAKE]: { d: 730, l: '2年' }, [TYPES.COOLANT]: { d: 730, l: '2年' },
-            [TYPES.INSP]: { d: 730, l: '2年' }, [TYPES.BAT]: { d: 1095, l: '3年' }, [TYPES.ETC]: { d: 0, l: '' }
+            [MaintenanceType.CAR_WASH]: { days: 30, label: '1ヶ月ごと' },
+            [MaintenanceType.TIRE_PRESSURE]: { days: 30, label: '1ヶ月ごと' },
+            [MaintenanceType.OIL_CHANGE]: { days: 180, km: 5000, label: '半年 / 5,000km' },
+            [MaintenanceType.OIL_FILTER]: { days: 365, km: 10000, label: '1年 / 10,000km' },
+            [MaintenanceType.WIPER]: { days: 365, label: '1年ごと' },
+            [MaintenanceType.AIR_FILTER]: { days: 730, km: 30000, label: '2年 / 30,000km' },
+            [MaintenanceType.AC_FILTER]: { days: 365, km: 10000, label: '1年 / 10,000km' },
+            [MaintenanceType.TIRE_ROTATION]: { days: 365, km: 10000, label: '1年 / 10,000km' },
+            [MaintenanceType.BRAKE_FLUID]: { days: 730, label: '2年ごと' },
+            [MaintenanceType.COOLANT]: { days: 730, label: '2年ごと' },
+            [MaintenanceType.INSPECTION]: { days: 730, label: '2年ごと' },
+            [MaintenanceType.BATTERY]: { days: 1095, label: '3年ごと' },
+            [MaintenanceType.OTHER]: { days: 0, label: '' },
         };
 
-        const getToday = () => new Date().toLocaleDateString('en-CA');
-        const ls = {
-            get: (k) => JSON.parse(localStorage.getItem(k) || '[]'),
-            set: (k, v) => localStorage.setItem(k, JSON.stringify(v))
+        const ICONS = {
+            [MaintenanceType.CAR_WASH]: <Droplets size={24} />, [MaintenanceType.TIRE_PRESSURE]: <Disc size={24} />,
+            [MaintenanceType.OIL_CHANGE]: <Wrench size={24} />, [MaintenanceType.OIL_FILTER]: <Filter size={24} />,
+            [MaintenanceType.WIPER]: <RefreshCw size={24} />, [MaintenanceType.AIR_FILTER]: <Wind size={24} />,
+            [MaintenanceType.AC_FILTER]: <Fan size={24} />, [MaintenanceType.TIRE_ROTATION]: <RefreshCw size={24} className="rotate-90" />,
+            [MaintenanceType.BRAKE_FLUID]: <Droplets size={24} className="text-red-400" />, [MaintenanceType.COOLANT]: <Thermometer size={24} />,
+            [MaintenanceType.INSPECTION]: <Calendar size={24} />, [MaintenanceType.BATTERY]: <div className="font-bold text-xs border border-current rounded px-1">BAT</div>,
+            [MaintenanceType.OTHER]: <Clock size={24} />,
         };
 
-        // --- Components ---
-        const Modal = ({ type, date, onClose, onSave }) => {
-            const [d, setD] = useState(date);
+        // --- Dashboard Component ---
+        const Dashboard = ({ vehicle, logs, onQuickAdd, onSwitchVehicle, allVehicles }) => {
+            const [modalState, setModalState] = useState({ isOpen: false, type: null, date: getTodayString() });
+
+            const statusItems = useMemo(() => {
+                return Object.keys(INTERVALS).filter(t => t !== MaintenanceType.OTHER).map(type => {
+                    const typeLogs = logs
+                        .filter(l => l.vehicleId === vehicle.id && l.type === type)
+                        .sort((a, b) => b.date.localeCompare(a.date));
+
+                    const lastLog = typeLogs[0];
+                    const config = INTERVALS[type];
+                    let nextDate = null, status = 'soon', daysRemaining = 0;
+
+                    if (lastLog) {
+                        const lastDate = new Date(lastLog.date);
+                        nextDate = new Date(lastDate);
+                        nextDate.setDate(lastDate.getDate() + config.days);
+                        if (config.km && vehicle.currentMileage - lastLog.mileage >= config.km) {
+                            nextDate = new Date(); status = 'overdue';
+                        }
+                        daysRemaining = Math.ceil((nextDate.getTime() - new Date().getTime()) / (86400000));
+                        if (daysRemaining < 0) status = 'overdue';
+                        else if (daysRemaining < 30) status = 'soon';
+                        else status = 'good';
+                    }
+                    return { type, lastLog, nextDate, status, config, daysRemaining };
+                });
+            }, [vehicle, logs]);
+
+            const getStatusColor = (s) => s === 'good' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : s === 'overdue' ? 'bg-red-50 text-red-700 border-red-100' : 'bg-amber-50 text-amber-700 border-amber-100';
+
             return (
-                <div className="modal-overlay" onClick={onClose}>
-                    <div className="bg-white w-[90%] max-w-sm rounded-2xl p-6 animate-fade-in shadow-2xl" onClick={e=>e.stopPropagation()}>
-                        <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-xl font-bold">{type}</h3>
-                            <button onClick={onClose}><X className="text-slate-400"/></button>
-                        </div>
-                        <div className="mb-8">
-                            <p className="text-xs text-slate-400 mb-2 text-center">日付を選択</p>
-                            <div className="date-box">
-                                {d.replace(/-/g, '/')}
-                                <input type="date" value={d} onChange={e=>setD(e.target.value)} className="date-input"/>
-                            </div>
-                        </div>
-                        <button onClick={()=>onSave(type, d)} className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold shadow-lg shadow-blue-200 active:scale-95 transition-transform">保存する</button>
-                    </div>
-                </div>
-            );
-        };
-
-        const Dashboard = ({ vehicle, logs, onAdd, onSwitch, vehicles }) => {
-            const [modal, setModal] = useState(null);
-            
-            const items = useMemo(() => Object.keys(INTERVALS).filter(t=>t!==TYPES.ETC).map(type => {
-                const h = logs.filter(l => l.vid === vehicle.id && l.type === type).sort((a,b) => b.date.localeCompare(a.date));
-                const last = h[0];
-                let next = null, st = 'soon', rem = 0;
-                if(last){
-                    const ld = new Date(last.date);
-                    next = new Date(ld); next.setDate(ld.getDate() + INTERVALS[type].d);
-                    if(INTERVALS[type].k && vehicle.km - last.km >= INTERVALS[type].k) { next = new Date(); st = 'overdue'; }
-                    rem = Math.ceil((next - new Date())/(86400000));
-                    st = rem < 0 ? 'overdue' : rem < 30 ? 'soon' : 'good';
-                }
-                return { type, last, next, st, conf: INTERVALS[type], rem };
-            }), [vehicle, logs]);
-
-            const colors = { good: 'bg-emerald-50 text-emerald-700 border-emerald-100', soon: 'bg-amber-50 text-amber-700 border-amber-100', overdue: 'bg-red-50 text-red-700 border-red-100' };
-
-            return (
-                <div className="space-y-4 pb-24">
-                    <div className="flex justify-between items-end mb-2">
+                <div className="space-y-6 animate-fade-in max-w-2xl mx-auto pb-20">
+                    <div className="flex items-end justify-between mb-2">
                         <div>
-                            <h2 className="text-lg font-bold">メンテナンス状況</h2>
-                            {vehicles.length > 1 ? (
-                                <div className="relative inline-block">
-                                    <select value={vehicle.id} onChange={e=>onSwitch(e.target.value)} className="bg-transparent text-sm text-slate-500 font-bold pr-4 outline-none appearance-none">{vehicles.map(v=><option key={v.id} value={v.id}>{v.name}</option>)}</select>
-                                    <ChevronDown size={14} className="absolute right-0 top-2 text-slate-400 pointer-events-none"/>
+                            <h2 className="text-lg font-bold text-slate-800">メンテナンス状況</h2>
+                            {allVehicles.length > 1 ? (
+                                <div className="relative inline-block mt-1">
+                                    <select value={vehicle.id} onChange={(e) => onSwitchVehicle(e.target.value)} className="appearance-none bg-transparent text-sm text-slate-500 font-medium pr-6 py-1 focus:outline-none">
+                                        {allVehicles.map(v => <option key={v.id} value={v.id}>{v.make} {v.model}</option>)}
+                                    </select>
+                                    <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                                 </div>
-                            ) : <p className="text-sm text-slate-500">{vehicle.name}</p>}
+                            ) : (<p className="text-slate-500 text-sm mt-1">{vehicle.make} {vehicle.model}</p>)}
                         </div>
                         <div className="text-right">
-                            <p className="text-xs text-slate-400">走行距離</p>
-                            <p className="text-xl font-bold font-mono">{vehicle.km.toLocaleString()} km</p>
+                            <p className="text-xs text-slate-400">現在の走行距離</p>
+                            <p className="text-xl font-bold text-slate-800 font-mono">{vehicle.currentMileage.toLocaleString()} km</p>
                         </div>
                     </div>
-                    {items.map(i => (
-                        <div key={i.type} className={`p-5 rounded-2xl border-2 shadow-sm ${colors[i.st]}`}>
-                            <div className="flex justify-between mb-3">
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-white/60 rounded-xl">{ICONS[i.type]}</div>
-                                    <div><h3 className="font-bold">{i.type}</h3><p className="text-xs opacity-70">{i.conf.l}</p></div>
-                                </div>
-                                <div className="bg-white/60 p-1.5 rounded-full">{i.st==='good'?<CheckCircle2 size={20}/>:i.st==='overdue'?<AlertCircle size={20}/>:<Clock size={20}/>}</div>
-                            </div>
-                            <div className="grid grid-cols-2 gap-3 text-sm">
-                                <div className="bg-white/50 p-2 rounded-lg">
-                                    <p className="text-[10px] font-bold opacity-60">前回</p>
-                                    <p className="font-bold">{i.last ? i.last.date.replace(/-/g,'/') : '-'}</p>
-                                </div>
-                                <div className="bg-white/50 p-2 rounded-lg">
-                                    <p className="text-[10px] font-bold opacity-60">次回目安</p>
-                                    <p className="font-bold">{i.next ? i.next.toLocaleDateString('ja-JP') : '-'}</p>
-                                    <p className="text-[10px] opacity-80">{i.st==='overdue'?'期限切れ':i.rem>0?`あと${i.rem}日`:'そろそろ'}</p>
-                                </div>
-                            </div>
-                            <button onClick={()=>setModal({type:i.type})} className="mt-4 w-full py-2.5 bg-white rounded-xl text-sm font-bold shadow-sm active:scale-95 flex justify-center gap-2 text-slate-800"><Plus size={16}/> 完了・記録する</button>
-                        </div>
-                    ))}
-                    {modal && <Modal type={modal.type} date={getToday()} onClose={()=>setModal(null)} onSave={(t,d)=>{onAdd(t,d); setModal(null);}}/>}
-                </div>
-            );
-        };
 
-        const List = ({ logs, vid, onAdd, onDel }) => {
-            const [add, setAdd] = useState(false);
-            const [filter, setFilter] = useState('All');
-            const [nw, setNw] = useState({ type: TYPES.OIL, date: getToday(), km: '', cost: '', memo: '' });
-
-            const save = (e) => {
-                e.preventDefault();
-                onAdd({ vid, ...nw, km: Number(nw.km), cost: Number(nw.cost) });
-                setAdd(false); setNw({ ...nw, km: '', cost: '', memo: '' });
-            };
-
-            const display = logs.filter(l => l.vid === vid && (filter === 'All' || l.type === filter)).sort((a,b) => b.date.localeCompare(a.date));
-
-            return (
-                <div className="h-full flex flex-col pb-24">
-                    <div className="flex gap-2 mb-4">
-                        <select value={filter} onChange={e=>setFilter(e.target.value)} className="bg-white border rounded-lg text-sm p-2 flex-1 outline-none">
-                            <option value="All">全て</option>{Object.values(TYPES).map(t=><option key={t} value={t}>{t}</option>)}
-                        </select>
-                        <button onClick={()=>setAdd(true)} className="bg-blue-600 text-white px-4 rounded-lg text-sm font-bold flex items-center gap-1"><Plus size={16}/> 記録</button>
-                    </div>
-                    <div className="flex-1 overflow-y-auto bg-white rounded-xl border p-2 space-y-2">
-                        {display.map(l => (
-                            <div key={l.id} className="flex justify-between items-center p-3 border-b last:border-0">
-                                <div>
-                                    <div className="font-bold text-slate-800">{l.type}</div>
-                                    <div className="text-xs text-slate-500">{l.date} / {l.km.toLocaleString()}km</div>
+                    <div className="grid gap-4">
+                        {statusItems.map((item) => (
+                            <div key={item.type} className={`relative p-5 rounded-2xl border-2 transition-all shadow-sm ${getStatusColor(item.status)}`}>
+                                <div className="flex justify-between items-start">
+                                    <div className="flex items-center gap-3 mb-3">
+                                        <div className="p-2 rounded-xl bg-white/60 shadow-sm">{ICONS[item.type]}</div>
+                                        <div><h3 className="font-bold text-lg leading-tight">{item.type}</h3><p className="text-xs opacity-80 mt-1">{item.config.label}</p></div>
+                                    </div>
+                                    <div className="bg-white/60 p-1.5 rounded-full backdrop-blur-sm">
+                                        {item.status === 'good' ? <CheckCircle2 size={20} className="text-emerald-500"/> : item.status === 'overdue' ? <AlertCircle size={20} className="text-red-500"/> : <Clock size={20} className="text-amber-500"/>}
+                                    </div>
                                 </div>
-                                <div className="flex items-center gap-3">
-                                    <span className="font-bold">¥{l.cost.toLocaleString()}</span>
-                                    <button onClick={()=>onDel(l.id)}><Trash2 size={16} className="text-slate-300 hover:text-red-500"/></button>
+                                <div className="grid grid-cols-2 gap-4 mt-2">
+                                    <div className="bg-white/50 rounded-lg p-2.5">
+                                        <p className="text-xs font-semibold opacity-60 uppercase mb-0.5">前回</p>
+                                        <p className="font-bold text-sm">{item.lastLog ? item.lastLog.date.replace(/-/g, '/') : '記録なし'}</p>
+                                    </div>
+                                    <div className="bg-white/50 rounded-lg p-2.5">
+                                        <p className="text-xs font-semibold opacity-60 uppercase mb-0.5">次回目安</p>
+                                        <p className="font-bold text-sm">{item.nextDate ? item.nextDate.toLocaleDateString('ja-JP') : '---'}</p>
+                                        <p className="text-[10px] opacity-70 mt-0.5">{item.status === 'overdue' ? '期限切れ' : item.daysRemaining > 0 ? `あと ${item.daysRemaining}日` : 'そろそろ'}</p>
+                                    </div>
                                 </div>
+                                <button onClick={() => setModalState({ isOpen: true, type: item.type, date: getTodayString() })} className="mt-4 w-full py-2.5 bg-white rounded-xl text-sm font-bold shadow-sm hover:shadow-md flex items-center justify-center gap-2 text-slate-800">
+                                    <Plus size={16} /> 完了・記録する
+                                </button>
                             </div>
                         ))}
-                        {display.length===0 && <div className="text-center py-10 text-slate-400">記録なし</div>}
                     </div>
-                    {add && (
-                        <div className="modal-overlay" onClick={()=>setAdd(false)}>
-                            <form onSubmit={save} className="bg-white w-[90%] max-w-sm rounded-2xl p-6 shadow-2xl space-y-4" onClick={e=>e.stopPropagation()}>
-                                <h3 className="font-bold text-lg">記録を追加</h3>
-                                <div className="grid grid-cols-2 gap-3">
-                                    <input type="date" value={nw.date} onChange={e=>setNw({...nw, date:e.target.value})} className="border p-2 rounded-lg bg-slate-50" required/>
-                                    <select value={nw.type} onChange={e=>setNw({...nw, type:e.target.value})} className="border p-2 rounded-lg bg-slate-50">{Object.values(TYPES).map(t=><option key={t} value={t}>{t}</option>)}</select>
+
+                    {modalState.isOpen && (
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl shadow-2xl w-[90%] max-w-[320px] animate-fade-in p-6 relative">
+                                <button onClick={() => setModalState({...modalState, isOpen: false})} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1"><X size={20} /></button>
+                                <h3 className="text-xl font-bold text-slate-800 mb-8 mt-1 text-center">{modalState.type}</h3>
+                                <div className="mb-8 text-center">
+                                    <p className="text-xs text-slate-400 mb-2 font-medium">日付を選択</p>
+                                    <div className="date-input-container shadow-inner">
+                                        <div className="date-input-display">{modalState.date.replace(/-/g, '/')}</div>
+                                        <input type="date" value={modalState.date} onChange={(e) => setModalState({...modalState, date: e.target.value})} className="custom-date-input" />
+                                    </div>
                                 </div>
-                                <div className="grid grid-cols-2 gap-3">
-                                    <input type="number" placeholder="距離(km)" value={nw.km} onChange={e=>setNw({...nw, km:e.target.value})} className="border p-2 rounded-lg" required/>
-                                    <input type="number" placeholder="費用(円)" value={nw.cost} onChange={e=>setNw({...nw, cost:e.target.value})} className="border p-2 rounded-lg"/>
-                                </div>
-                                <input placeholder="メモ" value={nw.memo} onChange={e=>setNw({...nw, memo:e.target.value})} className="w-full border p-2 rounded-lg"/>
-                                <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold">保存</button>
-                            </form>
+                                <button onClick={() => { onQuickAdd(modalState.type, modalState.date); setModalState({...modalState, isOpen: false}); }} className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 text-sm">保存する</button>
+                            </div>
                         </div>
                     )}
                 </div>
             );
         };
 
-        const Garage = ({ vehicles, logs, active, setActive, setVehicles, setLogs }) => {
-            const [add, setAdd] = useState(false);
-            const [nv, setNv] = useState({ name: '', km: '' });
-            const fileRef = useRef(null);
+        // --- VehicleManager Component ---
+        const VehicleManager = ({ vehicles, logs, activeVehicleId, onSetActive, onAddVehicle, onUpdateVehicle, onDeleteVehicle, onRestoreData }) => {
+            const [isAdding, setIsAdding] = useState(false);
+            const [newVehicle, setNewVehicle] = useState({ make: '', model: '', year: '', currentMileage: 0 });
+            const [deletingId, setDeletingId] = useState(null);
+            const fileInputRef = useRef(null);
 
-            const saveV = () => {
-                if(nv.name){
-                    const newV = { id: Date.now().toString(), name: nv.name, km: Number(nv.km)||0 };
-                    setVehicles([...vehicles, newV]); setActive(newV.id); setAdd(false); setNv({name:'', km:''});
+            const handleSave = () => {
+                if (newVehicle.make && newVehicle.model) {
+                    onAddVehicle({
+                        id: Date.now().toString(),
+                        make: newVehicle.make, model: newVehicle.model,
+                        year: newVehicle.year ? Number(newVehicle.year) : undefined,
+                        currentMileage: Number(newVehicle.currentMileage) || 0,
+                        imageUrl: `https://picsum.photos/seed/${Date.now()}/400/200`
+                    });
+                    setIsAdding(false);
+                    setNewVehicle({ make: '', model: '', year: '', currentMileage: 0 });
                 }
             };
-            const delV = (id) => {
-                if(confirm('削除しますか？')) {
-                    setVehicles(vehicles.filter(v=>v.id!==id));
-                    setLogs(logs.filter(l=>l.vid!==id));
-                    if(active===id) setActive('');
-                }
-            };
-            const updateKm = (id, k) => setVehicles(vehicles.map(v => v.id===id ? {...v, km: k} : v));
-            
-            const backup = () => {
-                const blob = new Blob([JSON.stringify({vehicles, logs})], {type:'application/json'});
-                const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `autocare_${getToday()}.json`; a.click();
-            };
-            const restore = (e) => {
-                const r = new FileReader();
-                r.onload = ev => {
+
+            const handleFileChange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
                     try {
-                        const d = JSON.parse(ev.target.result);
-                        if(d.vehicles && d.logs && confirm('復元しますか？既存データは上書きされます。')) {
-                            setVehicles(d.vehicles); setLogs(d.logs); if(d.vehicles[0]) setActive(d.vehicles[0].id);
-                            alert('復元完了');
+                        const data = JSON.parse(event.target.result);
+                        if (data.vehicles && data.logs) {
+                            if(confirm('データを復元しますか？現在のデータは上書きされます。')) {
+                                onRestoreData(data.vehicles, data.logs);
+                                alert('復元しました');
+                            }
                         }
-                    } catch(x){alert('エラー');}
+                    } catch (err) { alert('ファイル読み込みエラー'); }
                 };
-                if(e.target.files[0]) r.readAsText(e.target.files[0]);
+                reader.readAsText(file);
                 e.target.value = '';
             };
 
+            const downloadBackup = () => {
+                const data = { vehicles, logs, timestamp: new Date().toISOString() };
+                const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `autocare_backup_${getTodayString()}.json`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+
             return (
-                <div className="space-y-6 pb-24">
-                    <div className="grid gap-4">
+                <div className="space-y-6 pb-20">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {vehicles.map(v => (
-                            <div key={v.id} onClick={()=>setActive(v.id)} className={`p-4 bg-white rounded-xl border-2 relative ${active===v.id ? 'border-blue-500 ring-2 ring-blue-100' : 'border-slate-100'}`}>
-                                <h3 className="font-bold text-lg">{v.name}</h3>
-                                <div className="flex items-center gap-2 mt-2" onClick={e=>e.stopPropagation()}>
-                                    <span className="text-xs text-slate-500">距離:</span>
-                                    <input type="number" value={v.km} onChange={e=>updateKm(v.id, Number(e.target.value))} className="w-24 border rounded px-1 text-sm"/> km
+                            <div key={v.id} onClick={() => onSetActive(v.id)} className={`relative group overflow-hidden rounded-xl border-2 transition-all cursor-pointer bg-white ${v.id === activeVehicleId ? 'border-blue-500 shadow-md ring-2 ring-blue-100' : 'border-slate-100'}`}>
+                                <div className="h-32 bg-slate-200 relative">
+                                    <img src={v.imageUrl} className="w-full h-full object-cover opacity-90" />
+                                    {v.id === activeVehicleId && <div className="absolute top-2 right-2 bg-blue-500 text-white p-1 rounded-full"><Check size={14} /></div>}
+                                    <button onClick={(e) => { e.stopPropagation(); setDeletingId(v.id); }} className="absolute top-2 left-2 bg-white/90 text-red-600 p-2.5 rounded-lg shadow-md hover:bg-red-50"><Trash2 size={18} /></button>
                                 </div>
-                                <button onClick={(e)=>{e.stopPropagation(); delV(v.id);}} className="absolute top-4 right-4 text-slate-300 hover:text-red-500"><Trash2 size={18}/></button>
-                                {active===v.id && <div className="absolute top-2 right-2"><CheckCircle2 className="text-blue-500" size={16}/></div>}
+                                <div className="p-4">
+                                    <h3 className="font-bold text-lg text-slate-800">{v.year} {v.make} {v.model}</h3>
+                                    <div onClick={e => e.stopPropagation()} className="flex items-center gap-2 mt-2">
+                                        <span className="text-xs font-semibold text-slate-500">走行距離</span>
+                                        <input type="number" className="w-24 text-sm bg-slate-50 border border-slate-200 rounded px-2 py-1" value={v.currentMileage} onChange={(e) => onUpdateVehicle({ ...v, currentMileage: parseInt(e.target.value) || 0 })} />
+                                    </div>
+                                </div>
                             </div>
                         ))}
-                        <button onClick={()=>setAdd(true)} className="p-4 border-2 border-dashed border-slate-300 rounded-xl text-slate-400 flex flex-col items-center justify-center gap-2 hover:bg-slate-50"><Plus/> 車両追加</button>
+                        <button onClick={() => setIsAdding(true)} className="h-full min-h-[200px] flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-blue-50 text-slate-500 gap-2">
+                            <div className="p-3 bg-slate-100 rounded-full"><Plus size={24} /></div><span className="font-medium">車両を追加</span>
+                        </button>
                     </div>
-
-                    <div className="pt-6 border-t">
-                        <h3 className="text-xs font-bold text-slate-400 mb-3">データ管理</h3>
+                    
+                    <div className="mt-8 pt-8 border-t border-slate-200">
+                        <h3 className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">データ管理</h3>
                         <div className="flex gap-4">
-                            <button onClick={backup} className="flex-1 bg-white border rounded-xl py-3 text-center text-sm font-bold text-slate-700 shadow-sm flex flex-col items-center justify-center gap-1">
-                                <Save size={18} className="text-blue-500"/>
-                                <span>バックアップ<br/><span className="text-[10px] font-normal">(保存)</span></span>
+                            <button onClick={downloadBackup} className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 shadow-sm">
+                                <Save size={20} className="text-blue-500 mb-1" />
+                                <span>バックアップ</span><span className="text-xs text-slate-500">(保存)</span>
                             </button>
-                            <button onClick={()=>fileRef.current.click()} className="flex-1 bg-white border rounded-xl py-3 text-center text-sm font-bold text-slate-700 shadow-sm flex flex-col items-center justify-center gap-1">
-                                <Upload size={18} className="text-emerald-500"/>
-                                <span>復元<br/><span className="text-[10px] font-normal">(読み込み)</span></span>
+                            <button onClick={() => fileInputRef.current?.click()} className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 shadow-sm">
+                                <Upload size={20} className="text-emerald-500 mb-1" />
+                                <span>復元</span><span className="text-xs text-slate-500">(読み込み)</span>
                             </button>
-                            <input type="file" ref={fileRef} onChange={restore} className="hidden" accept=".json"/>
+                            <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" className="hidden" />
                         </div>
                     </div>
 
-                    {add && <div className="modal-overlay" onClick={()=>setAdd(false)}>
-                        <div className="bg-white w-[90%] max-w-sm rounded-2xl p-6 shadow-xl" onClick={e=>e.stopPropagation()}>
-                            <h3 className="font-bold mb-4">車両登録</h3>
-                            <input placeholder="車種 (例: プリウス)" value={nv.name} onChange={e=>setNv({...nv, name:e.target.value})} className="w-full border p-2 rounded-lg mb-3"/>
-                            <input type="number" placeholder="現在の走行距離 (km)" value={nv.km} onChange={e=>setNv({...nv, km:e.target.value})} className="w-full border p-2 rounded-lg mb-4"/>
-                            <button onClick={saveV} disabled={!nv.name} className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold disabled:opacity-50">登録</button>
+                    {isAdding && (
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl shadow-xl w-full max-w-md p-6 animate-fade-in" onClick={e => e.stopPropagation()}>
+                                <div className="flex justify-between items-center mb-6">
+                                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2"><Car className="text-blue-600" /> 新しい車両を追加</h3>
+                                    <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
+                                </div>
+                                <div className="space-y-4">
+                                    <input type="text" placeholder="メーカー (例: トヨタ)" value={newVehicle.make} onChange={(e) => setNewVehicle({...newVehicle, make: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="text" placeholder="モデル (例: プリウス)" value={newVehicle.model} onChange={(e) => setNewVehicle({...newVehicle, model: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="number" placeholder="年式 (任意)" value={newVehicle.year} onChange={(e) => setNewVehicle({...newVehicle, year: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="number" placeholder="現在の走行距離 (km)" value={newVehicle.currentMileage} onChange={(e) => setNewVehicle({...newVehicle, currentMileage: parseInt(e.target.value)})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <button onClick={handleSave} disabled={!newVehicle.make || !newVehicle.model} className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg mt-4">車両を追加</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>}
+                    )}
+                    {deletingId && (
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 animate-fade-in">
+                                <h3 className="text-xl font-bold text-center text-slate-900 mb-2">削除しますか？</h3>
+                                <p className="text-center text-slate-500 text-sm mb-6">この操作は取り消せません。</p>
+                                <div className="flex gap-3">
+                                    <button onClick={() => setDeletingId(null)} className="flex-1 py-3 bg-slate-100 rounded-xl font-bold">キャンセル</button>
+                                    <button onClick={() => { onDeleteVehicle(deletingId); setDeletingId(null); }} className="flex-1 py-3 bg-red-600 text-white rounded-xl font-bold">削除する</button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
                 </div>
             );
         };
 
-        const Ai = ({ vehicle, logs }) => {
-            const [k, setK] = useState(localStorage.getItem('ak')||'');
-            const [q, setQ] = useState('');
-            const [hist, setHist] = useState([{r:'m', t:'AI整備士です。愛車の相談をどうぞ。'}]);
-            const [l, setL] = useState(false);
+        // --- Other Components ---
+        const MaintenanceList = ({ logs, onAddLog, onDeleteLog, vehicle }) => {
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [filterType, setFilterType] = useState('All');
+            const [newLog, setNewLog] = useState({ type: 'オイル交換', date: getTodayString(), cost: 0, mileage: vehicle.currentMileage, notes: '', shopName: '' });
 
-            const ask = async () => {
-                if(!q || l) return;
-                const um = {r:'u', t:q}; setHist(p=>[...p, um]); setQ(''); setL(true);
-                localStorage.setItem('ak', k);
-                const ans = await getMaintenanceAdvice(vehicle, um.t, logs, k);
-                setHist(p=>[...p, {r:'m', t:ans}]); setL(false);
+            const handleSubmit = () => {
+                if (newLog.date && newLog.type) {
+                    onAddLog({ vehicleId: vehicle.id, ...newLog, cost: Number(newLog.cost), mileage: Number(newLog.mileage) });
+                    setIsModalOpen(false);
+                }
             };
-
-            if(!k) return <div className="p-8 text-center"><h2 className="font-bold mb-4">APIキー設定</h2><input type="password" value={k} onChange={e=>setK(e.target.value)} className="border p-2 w-full rounded mb-4" placeholder="Gemini API Key"/><button onClick={()=>localStorage.setItem('ak', k)} className="bg-blue-600 text-white w-full py-2 rounded font-bold">開始</button></div>;
+            const filtered = logs.filter(l => l.vehicleId === vehicle.id && (filterType === 'All' || l.type === filterType)).sort((a, b) => b.date.localeCompare(a.date));
 
             return (
                 <div className="h-full flex flex-col pb-20">
+                    <div className="flex justify-between items-center mb-4 gap-2">
+                        <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white border p-2 rounded-lg text-sm flex-1">
+                            <option value="All">すべて</option>{Object.values(MaintenanceType).map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                        <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-1"><Plus size={16}/> 追加</button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto bg-white rounded-xl border p-2">
+                        {filtered.map(log => (
+                            <div key={log.id} className="flex justify-between items-center p-3 border-b last:border-0">
+                                <div>
+                                    <div className="font-bold text-slate-800">{log.type}</div>
+                                    <div className="text-xs text-slate-500">{log.date.replace(/-/g, '/')} - {log.mileage.toLocaleString()} km</div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="font-bold text-slate-700">¥{log.cost.toLocaleString()}</span>
+                                    <button onClick={() => onDeleteLog(log.id)} className="text-slate-300 hover:text-red-500"><Trash2 size={16}/></button>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                    {isModalOpen && (
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl w-full max-w-md p-6">
+                                <h3 className="font-bold text-lg mb-4">記録を追加</h3>
+                                <div className="space-y-3">
+                                    <input type="date" value={newLog.date} onChange={e => setNewLog({...newLog, date: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <select value={newLog.type} onChange={e => setNewLog({...newLog, type: e.target.value})} className="w-full p-2 border rounded-lg">{Object.values(MaintenanceType).map(t => <option key={t} value={t}>{t}</option>)}</select>
+                                    <input type="number" placeholder="距離" value={newLog.mileage} onChange={e => setNewLog({...newLog, mileage: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <input type="number" placeholder="費用" value={newLog.cost} onChange={e => setNewLog({...newLog, cost: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <div className="flex gap-2 mt-4">
+                                        <button onClick={() => setIsModalOpen(false)} className="flex-1 py-2 bg-slate-100 rounded-lg">キャンセル</button>
+                                        <button onClick={handleSubmit} className="flex-1 py-2 bg-blue-600 text-white rounded-lg">保存</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const AiAdvisor = ({ vehicle, logs }) => {
+            const [key, setKey] = useState(getApiKey() || '');
+            const [input, setInput] = useState('');
+            const [msgs, setMsgs] = useState([{role: 'model', text: 'AI整備士です。何でも聞いてください。'}]);
+            const [loading, setLoading] = useState(false);
+
+            const send = async () => {
+                if (!input || loading) return;
+                const userMsg = { role: 'user', text: input };
+                setMsgs(p => [...p, userMsg]);
+                setInput(''); setLoading(true);
+                saveApiKey(key);
+                const res = await getMaintenanceAdvice(vehicle, userMsg.text, logs, key);
+                setMsgs(p => [...p, { role: 'model', text: res }]);
+                setLoading(false);
+            };
+
+            if (!key) return (
+                <div className="p-8 text-center">
+                    <h2 className="font-bold mb-4">APIキー設定</h2>
+                    <input type="password" placeholder="Gemini API Key" value={key} onChange={e => setKey(e.target.value)} className="w-full p-3 border rounded-xl mb-4" />
+                    <button onClick={() => saveApiKey(key)} className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold">開始</button>
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-xs text-blue-500 mt-4 block">APIキーを取得</a>
+                </div>
+            );
+
+            return (
+                <div className="flex flex-col h-full pb-20">
                     <div className="flex-1 overflow-y-auto p-4 space-y-4">
-                        {hist.map((m,i)=><div key={i} className={`p-3 rounded-xl text-sm max-w-[85%] ${m.r==='u'?'ml-auto bg-slate-800 text-white':'bg-white border'}`}><ReactMarkdown>{m.t}</ReactMarkdown></div>)}
-                        {l && <div className="text-center text-xs text-slate-400"><Loader2 className="animate-spin inline"/> 考え中...</div>}
+                        {msgs.map((m, i) => (
+                            <div key={i} className={`p-4 rounded-2xl text-sm ${m.role === 'user' ? 'bg-slate-800 text-white ml-auto' : 'bg-white border mr-auto'}`} style={{maxWidth: '85%'}}>
+                                <ReactMarkdown>{m.text}</ReactMarkdown>
+                            </div>
+                        ))}
+                        {loading && <div className="text-center text-slate-400 text-xs"><Loader2 className="animate-spin inline mr-1"/> 考え中...</div>}
                     </div>
                     <div className="p-4 bg-white border-t flex gap-2">
-                        <input value={q} onChange={e=>setQ(e.target.value)} className="flex-1 bg-slate-100 p-3 rounded-xl" placeholder="質問..."/>
-                        <button onClick={ask} className="bg-blue-600 text-white p-3 rounded-xl"><Send size={20}/></button>
+                        <input value={input} onChange={e => setInput(e.target.value)} placeholder="質問を入力..." className="flex-1 p-3 bg-slate-100 rounded-xl" />
+                        <button onClick={send} className="bg-blue-600 text-white p-3 rounded-xl"><Send size={20}/></button>
                     </div>
                 </div>
             );
         };
 
+        // --- Main App ---
         const App = () => {
-            const [page, setPage] = useState('home');
-            const [vs, setVs] = useState([]);
-            const [lsState, setLsState] = useState([]);
-            const [aid, setAid] = useState('');
+            const [view, setView] = useState('dashboard');
+            const [vehicles, setVehicles] = useState([]);
+            const [logs, setLogs] = useState([]);
+            const [activeId, setActiveId] = useState('');
 
             useEffect(() => {
-                const v = ls.get(VEHICLES_KEY), l = ls.get(LOGS_KEY);
-                if(v.length){ setVs(v); setLsState(l); setAid(v[0].id); }
-                else { const d = seedData(); setVs(d.vehicles); setLsState(d.logs); setAid(d.vehicles[0].id); }
+                let v = getVehicles(), l = getLogs();
+                if (v.length === 0) { const d = seedData(); v = d.vehicles; l = d.logs; }
+                setVehicles(v); setLogs(l);
+                if (v.length > 0) setActiveId(v[0].id);
             }, []);
 
-            useEffect(() => { ls.set(VEHICLES_KEY, vs); }, [vs]);
-            useEffect(() => { ls.set(LOGS_KEY, lsState); }, [lsState]);
+            useEffect(() => { saveVehicles(vehicles); }, [vehicles]);
+            useEffect(() => { saveLogs(logs); }, [logs]);
 
-            const curV = vs.find(v => v.id === aid) || vs[0];
+            const activeVehicle = vehicles.find(v => v.id === activeId) || vehicles[0];
 
-            // 修正：既存の最新ログの日付を強制上書き
-            const addLog = (type, date) => {
-                if(!curV) return;
-                // そのタイプのログを日付順にソート (新しい順)
-                const targetLogs = lsState.filter(l => l.vid === curV.id && l.type === type).sort((a,b) => b.date.localeCompare(a.date));
+            // 常に「最新の記録」の日付を上書き、なければ新規作成
+            const handleQuickAdd = (type, date) => {
+                if (!activeVehicle) return;
+                const typeLogs = logs.filter(l => l.vehicleId === activeVehicle.id && l.type === type).sort((a, b) => b.date.localeCompare(a.date));
                 
-                if (targetLogs.length > 0) {
-                    // 最新のログIDを取得
-                    const latestId = targetLogs[0].id;
-                    // 最新ログの日付を入力値で上書きする
-                    const updatedLogs = lsState.map(l => l.id === latestId ? { ...l, date: date } : l);
-                    setLsState(updatedLogs);
+                if (typeLogs.length > 0) {
+                    const targetLog = typeLogs[0];
+                    const updatedLogs = logs.map(l => l.id === targetLog.id ? { ...l, date: date } : l);
+                    setLogs(updatedLogs);
                 } else {
-                    // 新規作成
-                    const nl = { id: Date.now().toString(), vid: curV.id, type, date, km: curV.km, cost: 0 };
-                    setLsState([nl, ...lsState]);
+                    const newLog = { id: Date.now().toString(), vehicleId: activeVehicle.id, date, type, cost: 0, mileage: activeVehicle.currentMileage, notes: 'クイック追加', shopName: '' };
+                    setLogs([newLog, ...logs]);
                 }
             };
 
-            if(!curV && vs.length > 0) setAid(vs[0].id);
+            const handleRestore = (v, l) => { setVehicles(v); setLogs(l); if(v.length > 0) setActiveId(v[0].id); };
 
-            const NavBtn = ({p, i, l}) => <button onClick={()=>setPage(p)} className={`flex flex-col items-center gap-1 p-2 text-[10px] font-bold ${page===p?'text-blue-600':'text-slate-400'}`}>{i}<span>{l}</span></button>;
+            if (!activeVehicle && vehicles.length > 0) setActiveId(vehicles[0].id);
+
+            const renderContent = () => {
+                if (vehicles.length === 0 || view === 'vehicles') return <VehicleManager vehicles={vehicles} logs={logs} activeVehicleId={activeId} onSetActive={setActiveId} onAddVehicle={v => {setVehicles([...vehicles, v]); setActiveId(v.id);}} onUpdateVehicle={v => setVehicles(vehicles.map(x => x.id === v.id ? v : x))} onDeleteVehicle={id => { setVehicles(vehicles.filter(v => v.id !== id)); setLogs(logs.filter(l => l.vehicleId !== id)); }} onRestoreData={handleRestore} />;
+                if (view === 'logs') return <MaintenanceList logs={logs} vehicle={activeVehicle} onAddLog={l => setLogs([l, ...logs])} onDeleteLog={id => setLogs(logs.filter(l => l.id !== id))} />;
+                if (view === 'advisor') return <AiAdvisor vehicle={activeVehicle} logs={logs} />;
+                return <Dashboard vehicle={activeVehicle} allVehicles={vehicles} logs={logs} onQuickAdd={handleQuickAdd} onSwitchVehicle={setActiveId} />;
+            };
+
+            const Nav = ({ mobile }) => {
+                const Cls = mobile ? "flex flex-col items-center gap-1 p-2 text-xs" : "flex items-center gap-3 px-4 py-3 rounded-xl font-bold mb-1";
+                const Act = mobile ? "text-blue-600" : "bg-slate-900 text-white shadow-lg";
+                const Inact = mobile ? "text-slate-400" : "text-slate-500 hover:bg-slate-100";
+                const Btn = ({ v, i, l }) => <button onClick={() => setView(v)} className={`${Cls} ${view === v ? Act : Inact}`}>{i}<span>{l}</span></button>;
+                return <>{[['dashboard',<LayoutDashboard size={20}/>,'ホーム'],['logs',<Wrench size={20}/>,'履歴'],['advisor',<Sparkles size={20}/>,'AI'],['vehicles',<Car size={20}/>,'ガレージ']].map(a => <Btn key={a[0]} v={a[0]} i={a[1]} l={a[2]} />)}</>;
+            };
 
             return (
-                <div className="flex flex-col h-screen md:flex-row bg-slate-50 text-slate-900">
-                    <div className="flex-1 overflow-hidden flex flex-col">
-                        <div className="md:hidden bg-white border-b p-4 font-bold sticky top-0 z-10 flex justify-between">
-                            <span>AutoCare</span>
-                            {curV && <span className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-500">{curV.name}</span>}
-                        </div>
-                        <div className="flex-1 overflow-y-auto p-4 max-w-md mx-auto w-full">
-                            {!curV || page==='garage' ? <Garage vehicles={vs} logs={lsState} active={aid} setActive={setAid} setVehicles={setVs} setLogs={setLsState}/> :
-                             page==='logs' ? <List logs={lsState} vid={aid} onAdd={l=>setLsState([l,...lsState])} onDel={id=>setLsState(lsState.filter(l=>l.id!==id))}/> :
-                             page==='ai' ? <Ai vehicle={curV} logs={lsState}/> :
-                             <Dashboard vehicle={curV} logs={lsState} onAdd={addLog} onSwitch={setAid} vehicles={vs}/>
-                            }
-                        </div>
-                        <nav className="bg-white border-t p-2 pb-safe flex justify-around md:hidden fixed bottom-0 w-full z-50">
-                            <NavBtn p="home" i={<LayoutDashboard size={24}/>} l="ホーム"/>
-                            <NavBtn p="logs" i={<Wrench size={24}/>} l="履歴"/>
-                            <NavBtn p="ai" i={<Sparkles size={24}/>} l="AI"/>
-                            <NavBtn p="garage" i={<Car size={24}/>} l="ガレージ"/>
-                        </nav>
+                <div className="min-h-screen flex flex-col md:flex-row">
+                    <div className="md:hidden bg-white border-b p-4 sticky top-0 z-30 flex justify-between items-center shadow-sm">
+                        <h1 className="font-bold text-lg">AutoCare</h1>
+                        {activeVehicle && <span className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600">{activeVehicle.make} {activeVehicle.model}</span>}
                     </div>
+                    <aside className="hidden md:flex flex-col w-64 bg-white border-r h-screen sticky top-0 p-4">
+                        <h1 className="text-2xl font-extrabold mb-8 px-4">AutoCare</h1>
+                        <Nav mobile={false} />
+                    </aside>
+                    <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen"><div className="max-w-xl mx-auto h-full">{renderContent()}</div></main>
+                    <nav className="md:hidden fixed bottom-0 w-full bg-white border-t flex justify-around p-2 pb-safe z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]"><Nav mobile={true} /></nav>
                 </div>
             );
         };
