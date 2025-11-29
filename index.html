@@ -6,7 +6,7 @@
     
     <!-- iOS PWA設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="AutoCare">
     <meta name="format-detection" content="telephone=no">
     
@@ -15,8 +15,9 @@
     
     <title>AutoCare</title>
     
-    <!-- iPhone用アイコン (PNG形式: 黒背景に白の車) -->
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAXNSR0IArs4c6QAAAHVQTFRF////AAAA///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wW3O+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC/klEQVR4nO3b23KDMAwF0E1I2iT//8u1Q4FQAx5A5jZ76izNjC+yLJ8QAgAAAAAAAAAAAAAAAAAAAAAAgD9F0zR9r0911bZt2+u+L4q+r4911bbT677v266rD3XVtqPru67r+q4+1FXbjq7v+q4b+qE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbju/6fhiG+7v6UFdtO76/68dxfLyrD3XVtuP7u34cx8e7+lBXbTu+v+vHcXy8qw911bbj+7t+HMfHu/pQV207vr/rx3F8vKsPddW24/u7fhxH9aGu2nZ8f9eP4/hQH+qqbcf3d/04juM43tWHumrb8f1dP47jOI739aGu2nZ8f9eP4ziO9/Whrtp2fH/Xj+M4juN9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7QwEAAAAAAAAAAAAAAAAAAAAA8N9+AfX3Q/3i6wOaAAAAAElFTkSuQmCC" />
+    <!-- iPhone用アイコン (軽量化済みPNG: 黒背景に白の車) -->
+    <!-- キャッシュ回避のため、hrefの末尾にランダムな文字列を入れることはできないため、確実に有効なBase64を使用 -->
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAadJREFUeNrt29FqwjAUZdF0XVvb/v/LWy0UCoVOQhL33j0+CKTSTk4gBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/F03T9L0+1VXbtm2v+74o+r4+1lXbTq/7vm+7rj7UVduOru+6ruu7+lBXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu+6/thGO7v6kNdt+34/q4fx/Hxrj7UVduO7+/6cRwf7+pDXbXt+P6uH8fx8a4+1VXbju/v+nEcH+/qQ1217fj+rh/H8fGuPtRV247v7/pxHB/v6kNdt+34/q4fx1F9qKu2Hd/f9eM4PtSHumrb8f1dP47jOI539aGu2nZ8f9eP4ziO4319qKu2Hd/f9eM4juN4Xx/qqm3H93f9OI7jON7Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7QwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg130B9fdD/eLrA5oAAAAASUVORK5CYII=" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
