@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <!-- iOS用 Webアプリ設定 (フルスクリーン化) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- ステータスバーの色設定 (defaultにすることで文字被りを防ぐ) -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android用 Webアプリ設定 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>AutoCare AI</title>
+    
+    <!-- 軽量化されたシックな車のアイコン (SVG Base64) -->
+    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogIzF1MjkzYjsgYm9yZGVyLXJhZGl1czDogMjUlOyI+PHBhdGggZD0iTTQyMC4yIDI2My4ybC0zNS4zLTk1LjJjLTQuOS0xMy4zLTE3LjUtMjIuMy0zMS43LTIyLjNIMTU4LjhjLTE0LjIgMC0yNi44IDktMzEuNyAyMi4zTDI1LjkgMzgxLjZjLTIuOSA3LjktLjYgMTYuNyA1LjggMjIuMWwzMS42IDI2My45YzYgNS4xIDE0LjIgNi4xIDIxLjMgMi40bDEzLjUtNy4xIDEzLjUgNy4xYzcuMSAzLjcgMTUuMyAyLjcgMjEuMy0yLjRsMzEuNi0yNi45YzIuOC0yLjQgNS01LjQgNi4zLTguNmgxNzAuNGMxLjMgMy4yIDMuNSA2LjIgNi4zIDguNmwzMS42IDI2LjljNiA1LjEgMTQuMiA2LjEgMjEuMyAyLjRsMTMuNS03LjEgMTMuNSA3LjFjNy4xIDMuNyAxNS4zIDIuNyAyMS4zLTIuNGwzMS42LTI2LjljNi40LTUuNCA4LjctMTQuMiA1LjgtMjIuMXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+        background-color: #f8fafc; /* bg-slate-50 */
+      }
+      .no-scrollbar::-webkit-scrollbar {
+          display: none;
+      }
+      .no-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+      }
+      .pb-safe {
+        padding-bottom: env(safe-area-inset-bottom);
+      }
+      @keyframes fadeIn {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.2s ease-out forwards;
+      }
+      
+      /* モーダルを画面上部に固定するスタイル */
+      .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: 9999;
+        display: flex;
+        align-items: flex-start; /* 上寄せ */
+        justify-content: center;
+        padding-top: 15vh; /* 上から15%の位置に表示 */
+        backdrop-filter: blur(4px);
+      }
+      
+      .modal-content {
+        max-height: 80vh;
+        overflow-y: auto;
+      }
+
+      /* Date Input Styling */
+      .date-input-container {
+        position: relative;
+        width: 100%;
+        height: 54px;
+        background-color: #f8fafc;
+        border-radius: 0.75rem;
+        border: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      
+      .date-input-display {
+        position: absolute;
+        pointer-events: none;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: #1e293b;
+        z-index: 10;
+      }
+      
+      input[type="date"].custom-date-input {
+        appearance: none;
+        -webkit-appearance: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 20;
+      }
+    </style>
+    <script type="importmap">
+    {
+      "imports": {
+        "recharts": "https://aistudiocdn.com/recharts@^3.5.1",
+        "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+        "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+        "react": "https://aistudiocdn.com/react@^19.2.0",
+        "react/": "https://aistudiocdn.com/react@^19.2.0/",
+        "react-markdown": "https://aistudiocdn.com/react-markdown@^10.1.0",
+        "react-dom/client": "https://aistudiocdn.com/react-dom@^19.2.0/client"
+      }
+    }
+    </script>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased">
+    <div id="root"></div>
+
+    <script type="text/babel" data-type="module">
+        import React, { useState, useEffect, useMemo, useRef } from 'react';
+        import ReactDOM from 'react-dom/client';
+        import { 
+            LayoutDashboard, Car, Wrench, Sparkles, PlusCircle, 
+            CheckCircle2, AlertCircle, Clock, Droplets, Disc, 
+            RefreshCw, Calendar, Plus, Filter, Wind, Fan, 
+            Thermometer, X, Trash2, Send, Bot, User, Loader2, 
+            Key, Search, AlertTriangle, Check, ChevronDown, Download, Upload, Save
+        } from 'lucide-react';
+        import { GoogleGenAI } from "@google/genai";
+        import ReactMarkdown from 'react-markdown';
+
+        // --- types.ts ---
+        const MaintenanceType = {
+            CAR_WASH: '洗車',
+            TIRE_PRESSURE: 'タイヤ空気圧',
+            OIL_CHANGE: 'オイル交換',
+            OIL_FILTER: 'オイルフィルター',
+            WIPER: 'ワイパーゴム',
+            AIR_FILTER: 'エアフィルター',
+            AC_FILTER: 'エアコンフィルター',
+            TIRE_ROTATION: 'タイヤローテ',
+            BRAKE_FLUID: 'ブレーキフルード',
+            COOLANT: '冷却水',
+            INSPECTION: '車検・点検',
+            BATTERY: 'バッテリー',
+            OTHER: 'その他'
+        };
+
+        // --- services/storageService.ts ---
+        const VEHICLES_KEY = 'autocare_vehicles';
+        const LOGS_KEY = 'autocare_logs';
+        const API_KEY_STORAGE = 'autocare_api_key';
+
+        const saveVehicles = (vehicles) => {
+            localStorage.setItem(VEHICLES_KEY, JSON.stringify(vehicles));
+        };
+
+        const getVehicles = () => {
+            const data = localStorage.getItem(VEHICLES_KEY);
+            return data ? JSON.parse(data) : [];
+        };
+
+        const saveLogs = (logs) => {
+            localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+        };
+
+        const getLogs = () => {
+            const data = localStorage.getItem(LOGS_KEY);
+            return data ? JSON.parse(data) : [];
+        };
+
+        const saveApiKey = (key) => {
+            localStorage.setItem(API_KEY_STORAGE, key);
+        };
+
+        const getApiKey = () => {
+            return localStorage.getItem(API_KEY_STORAGE);
+        };
+
+        const seedData = () => {
+            const initialVehicles = [
+                {
+                    id: 'v1',
+                    make: 'トヨタ',
+                    model: 'プリウス',
+                    year: 2020,
+                    currentMileage: 45000,
+                    imageUrl: 'https://picsum.photos/400/200'
+                }
+            ];
+            
+            const today = new Date();
+            const lastMonth = new Date(today);
+            lastMonth.setMonth(today.getMonth() - 1);
+
+            const initialLogs = [
+                {
+                    id: 'l1',
+                    vehicleId: 'v1',
+                    date: lastMonth.toISOString().split('T')[0],
+                    type: MaintenanceType.CAR_WASH,
+                    cost: 1000,
+                    mileage: 44500,
+                    notes: 'ガソリンスタンドで洗車機',
+                    shopName: 'ENEOS'
+                }
+            ];
+
+            saveVehicles(initialVehicles);
+            saveLogs(initialLogs);
+            
+            return { vehicles: initialVehicles, logs: initialLogs };
+        };
+
+        // --- services/geminiService.ts ---
+        const getClient = (apiKey) => {
+            if (!apiKey) return null;
+            return new GoogleGenAI({ apiKey });
+        };
+
+        const getMaintenanceAdvice = async (vehicle, query, history, apiKey) => {
+            const ai = getClient(apiKey);
+            if (!ai) return "APIキーが設定されていません。";
+
+            const recentHistory = history
+                .filter(h => h.vehicleId === vehicle.id)
+                .sort((a, b) => b.date.localeCompare(a.date)) // String comparison
+                .slice(5)
+                .map(h => `- ${h.date}: ${h.type} (${h.mileage} km) - ¥${h.cost}`)
+                .join('\n');
+
+            const prompt = `
+                あなたは熟練した自動車整備士のアシスタントです。
+                ユーザーの車両: ${vehicle.year ? vehicle.year + '年式' : ''} ${vehicle.make} ${vehicle.model}
+                現在の走行距離: ${vehicle.currentMileage} km
+                
+                最近の整備履歴:
+                ${recentHistory || "記録なし"}
+
+                ユーザーの質問: ${query}
+
+                有益で簡潔、かつ正確なアドバイスを提供してください。
+                整備を提案する場合は、走行距離を参考にしてください。
+                回答はMarkdown形式でお願いします。
+            `;
+
+            try {
+                const response = await ai.models.generateContent({
+                    model: "gemini-2.5-flash",
+                    contents: prompt,
+                    config: {
+                        systemInstruction: "あなたはAutoCare Botという名前の、親切で知識豊富な整備士アシスタントです。",
+                    }
+                });
+                return response.text || "応答を生成できませんでした。";
+            } catch (error) {
+                console.error("Gemini Error:", error);
+                return "申し訳ありません。AI整備士への接続中にエラーが発生しました。APIキーが正しいか確認してください。";
+            }
+        };
+
+        // --- components/Dashboard.tsx ---
+        const getTodayString = () => {
+            const d = new Date();
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${year}-${month}-${day}`;
+        };
+
+        const INTERVALS = {
+            [MaintenanceType.CAR_WASH]: { days: 30, label: '1ヶ月ごと' },
+            [MaintenanceType.TIRE_PRESSURE]: { days: 30, label: '1ヶ月ごと' },
+            [MaintenanceType.OIL_CHANGE]: { days: 180, km: 5000, label: '半年 または 5,000km' },
+            [MaintenanceType.OIL_FILTER]: { days: 365, km: 10000, label: '1年 または 10,000km (2回に1回)' },
+            [MaintenanceType.WIPER]: { days: 365, label: '1年ごと' },
+            [MaintenanceType.AIR_FILTER]: { days: 730, km: 30000, label: '2年 または 30,000km' },
+            [MaintenanceType.AC_FILTER]: { days: 365, km: 10000, label: '1年 または 10,000km' },
+            [MaintenanceType.TIRE_ROTATION]: { days: 365, km: 10000, label: '1年 または 10,000km' },
+            [MaintenanceType.BRAKE_FLUID]: { days: 730, label: '2年ごと (車検時)' },
+            [MaintenanceType.COOLANT]: { days: 730, label: '2年ごと (車検時)' },
+            [MaintenanceType.INSPECTION]: { days: 730, label: '2年ごと' },
+            [MaintenanceType.BATTERY]: { days: 1095, label: '3年ごと' },
+            [MaintenanceType.OTHER]: { days: 0, label: '' },
+        };
+
+        const ICONS = {
+            [MaintenanceType.CAR_WASH]: <Droplets size={24} />,
+            [MaintenanceType.TIRE_PRESSURE]: <Disc size={24} />,
+            [MaintenanceType.OIL_CHANGE]: <Wrench size={24} />,
+            [MaintenanceType.OIL_FILTER]: <Filter size={24} />,
+            [MaintenanceType.WIPER]: <RefreshCw size={24} />,
+            [MaintenanceType.AIR_FILTER]: <Wind size={24} />,
+            [MaintenanceType.AC_FILTER]: <Fan size={24} />,
+            [MaintenanceType.TIRE_ROTATION]: <RefreshCw size={24} className="rotate-90" />,
+            [MaintenanceType.BRAKE_FLUID]: <Droplets size={24} className="text-red-400" />,
+            [MaintenanceType.COOLANT]: <Thermometer size={24} />,
+            [MaintenanceType.INSPECTION]: <Calendar size={24} />,
+            [MaintenanceType.BATTERY]: <div className="font-bold text-xs border border-current rounded px-1">BAT</div>,
+            [MaintenanceType.OTHER]: <Clock size={24} />,
+        };
+
+        const Dashboard = ({ vehicle, logs, onQuickAdd, onSwitchVehicle, allVehicles }) => {
+            const [modalState, setModalState] = useState({
+                isOpen: false,
+                type: null,
+                date: getTodayString()
+            });
+
+            const handleOpenModal = (type) => {
+                setModalState({
+                    isOpen: true,
+                    type,
+                    date: getTodayString()
+                });
+            };
+
+            const handleConfirm = () => {
+                if (modalState.type && modalState.date) {
+                    onQuickAdd(modalState.type, modalState.date);
+                    setModalState({ ...modalState, isOpen: false });
+                }
+            };
+            
+            const statusItems = useMemo(() => {
+                const trackedTypes = [
+                    MaintenanceType.CAR_WASH,
+                    MaintenanceType.TIRE_PRESSURE,
+                    MaintenanceType.OIL_CHANGE,
+                    MaintenanceType.OIL_FILTER,
+                    MaintenanceType.WIPER,
+                    MaintenanceType.AC_FILTER,
+                    MaintenanceType.AIR_FILTER,
+                    MaintenanceType.BRAKE_FLUID,
+                    MaintenanceType.COOLANT,
+                    MaintenanceType.INSPECTION,
+                    MaintenanceType.BATTERY
+                ];
+
+                return trackedTypes.map(type => {
+                    const typeLogs = logs
+                        .filter(l => l.vehicleId === vehicle.id && l.type === type)
+                        .sort((a, b) => b.date.localeCompare(a.date)); // 文字列として日付比較（正確）
+
+                    const lastLog = typeLogs[0];
+                    const config = INTERVALS[type];
+                    
+                    let nextDate = null;
+                    let status = 'soon';
+                    let daysRemaining = 0;
+
+                    if (lastLog) {
+                        const lastDate = new Date(lastLog.date);
+                        nextDate = new Date(lastDate);
+                        nextDate.setDate(lastDate.getDate() + config.days);
+                        
+                        if (config.km && vehicle.currentMileage - lastLog.mileage >= config.km) {
+                            nextDate = new Date();
+                            status = 'overdue';
+                        }
+
+                        const today = new Date();
+                        const diffTime = nextDate.getTime() - today.getTime();
+                        daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+
+                        if (daysRemaining < 0) status = 'overdue';
+                        else if (daysRemaining < 30) status = 'soon';
+                        else status = 'good';
+                    } else {
+                        status = 'soon';
+                    }
+
+                    return { type, lastLog, nextDate, status, config, daysRemaining };
+                });
+            }, [vehicle, logs]);
+
+            const getStatusColor = (status) => {
+                switch (status) {
+                    case 'good': return 'bg-emerald-50 text-emerald-700 border-emerald-100';
+                    case 'soon': return 'bg-amber-50 text-amber-700 border-amber-100';
+                    case 'overdue': return 'bg-red-50 text-red-700 border-red-100';
+                    default: return 'bg-slate-50 text-slate-700';
+                }
+            };
+
+            const getStatusIcon = (status) => {
+                switch (status) {
+                    case 'good': return <CheckCircle2 size={20} className="text-emerald-5
