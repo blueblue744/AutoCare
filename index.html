@@ -6,7 +6,7 @@
     
     <!-- iOS PWA設定 -->
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta name="apple-mobile-web-app-title" content="AutoCare">
     <meta name="format-detection" content="telephone=no">
     
@@ -15,9 +15,8 @@
     
     <title>AutoCare</title>
     
-    <!-- iPhone用アイコン (軽量化済みPNG: 黒背景に白の車) -->
-    <!-- キャッシュ回避のため、hrefの末尾にランダムな文字列を入れることはできないため、確実に有効なBase64を使用 -->
-    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAGUExURQAAAAAAAKVnuc8AAAACdFJOU/8A5bcwSgAAAAlwSFlzAAAOwwAADsMBx2+oZAAAAadJREFUeNrt29FqwjAUZdF0XVvb/v/LWy0UCoVOQhL33j0+CKTSTk4gBQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAID/F03T9L0+1VXbtm2v+74o+r4+1lXbTq/7vm+7rj7UVduOru+6ruu7+lBXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu6vuu7vhuG+1BXbTu+6/thGO7v6kNdt+34/q4fx/Hxrj7UVduO7+/6cRwf7+pDXbXt+P6uH8fx8a4+1VXbju/v+nEcH+/qQ1217fj+rh/H8fGuPtRV247v7/pxHB/v6kNdt+34/q4fx1F9qKu2Hd/f9eM4PtSHumrb8f1dP47jOI539aGu2nZ8f9eP4ziO4319qKu2Hd/f9eM4juN4Xx/qqm3H93f9OI7jON7Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pp3/ldP8/zfX2oq/ad3/XzPN/Xh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7QwEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADg130B9fdD/eLrA5oAAAAASUVORK5CYII=" />
+    <!-- iPhone用アイコン (軽量PNG: 黒背景に白の車) -->
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAMAAACdt4HsAAAAbFBMVEUAAAAAAAD///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8h9S1wAAAAI3RSTlMAAQIDBAUGBwgJCgsMDQ4PEBESExQVFhcYGRobHB0eHyAhIiM0X2qwAAAAqkURBVHja7ZbZDsIwDEW7lKJl38f//6gjIY5CXdqJ8ZL3FBRETrw4A2O/73r9gH7Q3y0AEwA2x731B2+9B+D77S9fBvD+8ucvAni1/uT7r39/fV794b3uX/xun9frK8F7l6f2yzoTvNdK8N4owXvT13uXp/bLOBO810rw3ijBe9O/e6/7F7/b5/X6SvDe5an9ss4E77USvDdK8N709d7lqf0yziR47yF4b/oX7w184AP8wQcCBG6hQgK3+gAAAABJRU5ErkJggg==" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -39,20 +38,19 @@
       }
       .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
       
-      /* モーダルを画面上部に固定 (スワイプ不要・上から15%の位置) */
+      /* モーダルを画面上部に固定 (上から15%) */
       .modal-overlay {
         position: fixed;
         top: 0; left: 0; right: 0; bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
         z-index: 9999;
         display: flex;
-        align-items: flex-start; /* 上寄せ */
+        align-items: flex-start;
         justify-content: center;
         padding-top: 15vh;
         backdrop-filter: blur(4px);
       }
       
-      /* 日付入力のスタイル */
       .date-input-container {
         position: relative;
         width: 100%; height: 54px;
@@ -193,9 +191,10 @@
 
             const statusItems = useMemo(() => {
                 return Object.keys(INTERVALS).filter(t => t !== MaintenanceType.OTHER).map(type => {
+                    // 最新のログを取得（日付文字列で比較）
                     const typeLogs = logs
                         .filter(l => l.vehicleId === vehicle.id && l.type === type)
-                        .sort((a, b) => b.date.localeCompare(a.date)); // 文字列比較で正確にソート
+                        .sort((a, b) => b.date.localeCompare(a.date));
 
                     const lastLog = typeLogs[0];
                     const config = INTERVALS[type];
@@ -533,15 +532,15 @@
 
             const activeVehicle = vehicles.find(v => v.id === activeId) || vehicles[0];
 
-            // 修正: 常に「最新の記録」の日付を上書き、なければ新規作成
+            // 修正: 最新の記録の日付を強制上書き
             const handleQuickAdd = (type, date) => {
                 if (!activeVehicle) return;
                 const typeLogs = logs.filter(l => l.vehicleId === activeVehicle.id && l.type === type).sort((a, b) => b.date.localeCompare(a.date));
                 
                 if (typeLogs.length > 0) {
-                    // 最新のログの日付を強制的に変更する（過去・未来問わず入力値を優先）
-                    const targetLog = typeLogs[0];
-                    const updatedLogs = logs.map(l => l.id === targetLog.id ? { ...l, date: date } : l);
+                    // 最新のログ(typeLogs[0])を見つけ、その日付を上書きする
+                    const targetId = typeLogs[0].id;
+                    const updatedLogs = logs.map(l => l.id === targetId ? { ...l, date: date } : l);
                     setLogs(updatedLogs);
                 } else {
                     const newLog = { id: Date.now().toString(), vehicleId: activeVehicle.id, date, type, cost: 0, mileage: activeVehicle.currentMileage, notes: 'クイック追加', shopName: '' };
