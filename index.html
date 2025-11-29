@@ -3,13 +3,20 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="format-detection" content="telephone=no">
-    <title>AutoCare AI</title>
     
-    <!-- 軽量化されたシックな車のアイコン (SVG Base64) -->
-    <link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBzdHlsZT0iYmFja2dyb3VuZC1jb2xvcjogIzF1MjkzYjsgYm9yZGVyLXJhZGl1czDogMjUlOyI+PHBhdGggZD0iTTQyMC4yIDI2My4ybC0zNS4zLTk1LjJjLTQuOS0xMy4zLTE3LjUtMjIuMy0zMS43LTIyLjNIMTU4LjhjLTE0LjIgMC0yNi44IDktMzEuNyAyMi4zTDI1LjkgMzgxLjZjLTIuOSA3LjktLjYgMTYuNyA1LjggMjIuMWwzMS42IDI2My45YzYgNS4xIDE0LjIgNi4xIDIxLjMgMi40bDEzLjUtNy4xIDEzLjUgNy4xYzcuMSAzLjcgMTUuMyAyLjcgMjEuMy0yLjRsMzEuNi0yNi45YzIuOC0yLjQgNS01LjQgNi4zLTguNmgxNzAuNGMxLjMgMy4yIDMuNSA2LjIgNi4zIDguNmwzMS42IDI2LjljNiA1LjEgMTQuMiA2LjEgMjEuMyAyLjRsMTMuNS03LjEgMTMuNSA3LjFjNy4xIDMuNyAxNS4zIDIuNyAyMS4zLTIuNGwzMS42LTI2LjljNi40LTUuNCA4LjctMTQuMiA1LjgtMjIuMXoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" />
+    <!-- iOS PWA設定 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="AutoCare">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android PWA設定 -->
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>AutoCare</title>
+    
+    <!-- iPhone用アイコン (PNG形式: 黒背景に白の車) -->
+    <link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAMAAAAKE/YAAAAAXNSR0IArs4c6QAAAHVQTFRF////AAAA///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wW3O+AAAACXBIWXMAAA7DAAAOwwHHb6hkAAAC/klEQVR4nO3b23KDMAwF0E1I2iT//8u1Q4FQAx5A5jZ76izNjC+yLJ8QAgAAAAAAAAAAAAAAAAAAAAAAgD9F0zR9r0911bZt2+u+L4q+r4911bbT677v266rD3XVtqPru67r+q4+1FXbjq7v+q4b+qE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbjq7v+q7vhuE+1FXbju/6fhiG+7v6UFdtO76/68dxfLyrD3XVtuP7u34cx8e7+lBXbTu+v+vHcXy8qw911bbj+7t+HMfHu/pQV207vr/rx3F8vKsPddW24/u7fhxH9aGu2nZ8f9eP4/hQH+qqbcf3d/04juM43tWHumrb8f1dP47jOI739aGu2nZ8f9eP4ziO9/Whrtp2fH/Xj+M4juN9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faib9p3f9fM839eHumrf+V0/z/N9faj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7Q32o+/ad//fneb4/1Ie6b9/5f3+e5/tDfaj79p3/9+d5vj/Uh7pv3/l/f57n+0N9qPv2nf/353m+P9SHum/f+X9/nuf7QwEAAAAAAAAAAAAAAAAAAAAA8N9+AfX3Q/3i6wOaAAAAAElFTkSuQmCC" />
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -19,80 +26,50 @@
         font-family: 'Inter', sans-serif;
         overscroll-behavior-y: none;
         -webkit-tap-highlight-color: transparent;
+        background-color: #f8fafc;
       }
-      .no-scrollbar::-webkit-scrollbar {
-          display: none;
-      }
-      .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-      }
-      .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom);
-      }
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+      .pb-safe { padding-bottom: env(safe-area-inset-bottom); }
+      
       @keyframes fadeIn {
-        from { opacity: 0; transform: scale(0.95); }
+        from { opacity: 0; transform: scale(0.98); }
         to { opacity: 1; transform: scale(1); }
       }
-      .animate-fade-in {
-        animation: fadeIn 0.2s ease-out forwards;
-      }
+      .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
       
-      /* モーダルを画面上部に固定するスタイル */
+      /* モーダルを画面上部に固定 (スワイプ不要・上から15%の位置) */
       .modal-overlay {
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        top: 0; left: 0; right: 0; bottom: 0;
         background-color: rgba(0, 0, 0, 0.6);
         z-index: 9999;
         display: flex;
-        align-items: flex-start; /* 上寄せに変更 */
+        align-items: flex-start; /* 上寄せ */
         justify-content: center;
-        padding-top: 15vh; /* 上から15%の位置に表示 */
+        padding-top: 15vh;
         backdrop-filter: blur(4px);
       }
       
-      .modal-content {
-        max-height: 80vh;
-        overflow-y: auto;
-      }
-
-      /* Date Input Styling */
+      /* 日付入力のスタイル */
       .date-input-container {
         position: relative;
-        width: 100%;
-        height: 54px;
+        width: 100%; height: 54px;
         background-color: #f8fafc;
         border-radius: 0.75rem;
         border: 1px solid #e2e8f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display: flex; align-items: center; justify-content: center;
         overflow: hidden;
       }
-      
       .date-input-display {
-        position: absolute;
-        pointer-events: none;
-        font-weight: 700;
-        font-size: 1.25rem;
-        color: #1e293b;
-        z-index: 10;
+        position: absolute; pointer-events: none;
+        font-weight: 700; font-size: 1.25rem;
+        color: #1e293b; z-index: 10;
       }
-      
       input[type="date"].custom-date-input {
-        appearance: none;
-        -webkit-appearance: none;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        cursor: pointer;
-        z-index: 20;
+        appearance: none; -webkit-appearance: none;
+        position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        opacity: 0; cursor: pointer; z-index: 20;
       }
     </style>
     <script type="importmap">
@@ -125,290 +102,135 @@
         import { GoogleGenAI } from "@google/genai";
         import ReactMarkdown from 'react-markdown';
 
-        // --- types.ts ---
         const MaintenanceType = {
-            CAR_WASH: '洗車',
-            TIRE_PRESSURE: 'タイヤ空気圧',
-            OIL_CHANGE: 'オイル交換',
-            OIL_FILTER: 'オイルフィルター',
-            WIPER: 'ワイパーゴム',
-            AIR_FILTER: 'エアフィルター',
-            AC_FILTER: 'エアコンフィルター',
-            TIRE_ROTATION: 'タイヤローテ',
-            BRAKE_FLUID: 'ブレーキフルード',
-            COOLANT: '冷却水',
-            INSPECTION: '車検・点検',
-            BATTERY: 'バッテリー',
-            OTHER: 'その他'
+            CAR_WASH: '洗車', TIRE_PRESSURE: 'タイヤ空気圧', OIL_CHANGE: 'オイル交換',
+            OIL_FILTER: 'オイルフィルター', WIPER: 'ワイパーゴム', AIR_FILTER: 'エアフィルター',
+            AC_FILTER: 'エアコンフィルター', TIRE_ROTATION: 'タイヤローテ', BRAKE_FLUID: 'ブレーキフルード',
+            COOLANT: '冷却水', INSPECTION: '車検・点検', BATTERY: 'バッテリー', OTHER: 'その他'
         };
 
-        // --- services/storageService.ts ---
         const VEHICLES_KEY = 'autocare_vehicles';
         const LOGS_KEY = 'autocare_logs';
         const API_KEY_STORAGE = 'autocare_api_key';
 
-        const saveVehicles = (vehicles) => {
-            localStorage.setItem(VEHICLES_KEY, JSON.stringify(vehicles));
-        };
-
-        const getVehicles = () => {
-            const data = localStorage.getItem(VEHICLES_KEY);
-            return data ? JSON.parse(data) : [];
-        };
-
-        const saveLogs = (logs) => {
-            localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
-        };
-
-        const getLogs = () => {
-            const data = localStorage.getItem(LOGS_KEY);
-            return data ? JSON.parse(data) : [];
-        };
-
-        const saveApiKey = (key) => {
-            localStorage.setItem(API_KEY_STORAGE, key);
-        };
-
-        const getApiKey = () => {
-            return localStorage.getItem(API_KEY_STORAGE);
-        };
+        const saveVehicles = (vehicles) => localStorage.setItem(VEHICLES_KEY, JSON.stringify(vehicles));
+        const getVehicles = () => JSON.parse(localStorage.getItem(VEHICLES_KEY) || '[]');
+        const saveLogs = (logs) => localStorage.setItem(LOGS_KEY, JSON.stringify(logs));
+        const getLogs = () => JSON.parse(localStorage.getItem(LOGS_KEY) || '[]');
+        const saveApiKey = (key) => localStorage.setItem(API_KEY_STORAGE, key);
+        const getApiKey = () => localStorage.getItem(API_KEY_STORAGE);
 
         const seedData = () => {
-            const initialVehicles = [
-                {
-                    id: 'v1',
-                    make: 'トヨタ',
-                    model: 'プリウス',
-                    year: 2020,
-                    currentMileage: 45000,
-                    imageUrl: 'https://picsum.photos/400/200'
-                }
-            ];
-            
-            const today = new Date();
-            const lastMonth = new Date(today);
-            lastMonth.setMonth(today.getMonth() - 1);
-
-            const initialLogs = [
-                {
-                    id: 'l1',
-                    vehicleId: 'v1',
-                    date: lastMonth.toISOString().split('T')[0],
-                    type: MaintenanceType.CAR_WASH,
-                    cost: 1000,
-                    mileage: 44500,
-                    notes: 'ガソリンスタンドで洗車機',
-                    shopName: 'ENEOS'
-                }
-            ];
-
+            const initialVehicles = [{
+                id: 'v1', make: 'トヨタ', model: 'プリウス', year: 2020,
+                currentMileage: 45000, imageUrl: 'https://picsum.photos/400/200'
+            }];
+            const today = new Date().toISOString().split('T')[0];
+            const initialLogs = [{
+                id: 'l1', vehicleId: 'v1', date: today, type: MaintenanceType.CAR_WASH,
+                cost: 1000, mileage: 44500, notes: '初期データ', shopName: 'ENEOS'
+            }];
             saveVehicles(initialVehicles);
             saveLogs(initialLogs);
-            
             return { vehicles: initialVehicles, logs: initialLogs };
         };
 
-        // --- services/geminiService.ts ---
-        const getClient = (apiKey) => {
-            if (!apiKey) return null;
-            return new GoogleGenAI({ apiKey });
-        };
+        const getClient = (apiKey) => apiKey ? new GoogleGenAI({ apiKey }) : null;
 
         const getMaintenanceAdvice = async (vehicle, query, history, apiKey) => {
             const ai = getClient(apiKey);
             if (!ai) return "APIキーが設定されていません。";
-
             const recentHistory = history
                 .filter(h => h.vehicleId === vehicle.id)
-                .sort((a, b) => b.date.localeCompare(a.date)) // String comparison
+                .sort((a, b) => b.date.localeCompare(a.date))
                 .slice(5)
-                .map(h => `- ${h.date}: ${h.type} (${h.mileage} km) - ¥${h.cost}`)
+                .map(h => `- ${h.date}: ${h.type} (${h.mileage} km)`)
                 .join('\n');
-
-            const prompt = `
-                あなたは熟練した自動車整備士のアシスタントです。
-                ユーザーの車両: ${vehicle.year ? vehicle.year + '年式' : ''} ${vehicle.make} ${vehicle.model}
-                現在の走行距離: ${vehicle.currentMileage} km
-                
-                最近の整備履歴:
-                ${recentHistory || "記録なし"}
-
-                ユーザーの質問: ${query}
-
-                有益で簡潔、かつ正確なアドバイスを提供してください。
-                整備を提案する場合は、走行距離を参考にしてください。
-                回答はMarkdown形式でお願いします。
-            `;
-
+            const prompt = `整備士アシスタントとして回答してください。\n車両: ${vehicle.make} ${vehicle.model} (${vehicle.currentMileage}km)\n履歴:\n${recentHistory}\n質問: ${query}`;
             try {
                 const response = await ai.models.generateContent({
-                    model: "gemini-2.5-flash",
-                    contents: prompt,
-                    config: {
-                        systemInstruction: "あなたはAutoCare Botという名前の、親切で知識豊富な整備士アシスタントです。",
-                    }
+                    model: "gemini-2.5-flash", contents: prompt,
                 });
-                return response.text || "応答を生成できませんでした。";
-            } catch (error) {
-                console.error("Gemini Error:", error);
-                return "申し訳ありません。AI整備士への接続中にエラーが発生しました。APIキーが正しいか確認してください。";
-            }
+                return response.text || "応答できませんでした。";
+            } catch (error) { return "エラーが発生しました。APIキーを確認してください。"; }
         };
 
-        // --- components/Dashboard.tsx ---
         const getTodayString = () => {
             const d = new Date();
-            const year = d.getFullYear();
-            const month = String(d.getMonth() + 1).padStart(2, '0');
-            const day = String(d.getDate()).padStart(2, '0');
-            return `${year}-${month}-${day}`;
+            return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
         };
 
         const INTERVALS = {
             [MaintenanceType.CAR_WASH]: { days: 30, label: '1ヶ月ごと' },
             [MaintenanceType.TIRE_PRESSURE]: { days: 30, label: '1ヶ月ごと' },
-            [MaintenanceType.OIL_CHANGE]: { days: 180, km: 5000, label: '半年 または 5,000km' },
-            [MaintenanceType.OIL_FILTER]: { days: 365, km: 10000, label: '1年 または 10,000km (2回に1回)' },
+            [MaintenanceType.OIL_CHANGE]: { days: 180, km: 5000, label: '半年 / 5,000km' },
+            [MaintenanceType.OIL_FILTER]: { days: 365, km: 10000, label: '1年 / 10,000km' },
             [MaintenanceType.WIPER]: { days: 365, label: '1年ごと' },
-            [MaintenanceType.AIR_FILTER]: { days: 730, km: 30000, label: '2年 または 30,000km' },
-            [MaintenanceType.AC_FILTER]: { days: 365, km: 10000, label: '1年 または 10,000km' },
-            [MaintenanceType.TIRE_ROTATION]: { days: 365, km: 10000, label: '1年 または 10,000km' },
-            [MaintenanceType.BRAKE_FLUID]: { days: 730, label: '2年ごと (車検時)' },
-            [MaintenanceType.COOLANT]: { days: 730, label: '2年ごと (車検時)' },
+            [MaintenanceType.AIR_FILTER]: { days: 730, km: 30000, label: '2年 / 30,000km' },
+            [MaintenanceType.AC_FILTER]: { days: 365, km: 10000, label: '1年 / 10,000km' },
+            [MaintenanceType.TIRE_ROTATION]: { days: 365, km: 10000, label: '1年 / 10,000km' },
+            [MaintenanceType.BRAKE_FLUID]: { days: 730, label: '2年ごと' },
+            [MaintenanceType.COOLANT]: { days: 730, label: '2年ごと' },
             [MaintenanceType.INSPECTION]: { days: 730, label: '2年ごと' },
             [MaintenanceType.BATTERY]: { days: 1095, label: '3年ごと' },
             [MaintenanceType.OTHER]: { days: 0, label: '' },
         };
 
         const ICONS = {
-            [MaintenanceType.CAR_WASH]: <Droplets size={24} />,
-            [MaintenanceType.TIRE_PRESSURE]: <Disc size={24} />,
-            [MaintenanceType.OIL_CHANGE]: <Wrench size={24} />,
-            [MaintenanceType.OIL_FILTER]: <Filter size={24} />,
-            [MaintenanceType.WIPER]: <RefreshCw size={24} />,
-            [MaintenanceType.AIR_FILTER]: <Wind size={24} />,
-            [MaintenanceType.AC_FILTER]: <Fan size={24} />,
-            [MaintenanceType.TIRE_ROTATION]: <RefreshCw size={24} className="rotate-90" />,
-            [MaintenanceType.BRAKE_FLUID]: <Droplets size={24} className="text-red-400" />,
-            [MaintenanceType.COOLANT]: <Thermometer size={24} />,
-            [MaintenanceType.INSPECTION]: <Calendar size={24} />,
-            [MaintenanceType.BATTERY]: <div className="font-bold text-xs border border-current rounded px-1">BAT</div>,
+            [MaintenanceType.CAR_WASH]: <Droplets size={24} />, [MaintenanceType.TIRE_PRESSURE]: <Disc size={24} />,
+            [MaintenanceType.OIL_CHANGE]: <Wrench size={24} />, [MaintenanceType.OIL_FILTER]: <Filter size={24} />,
+            [MaintenanceType.WIPER]: <RefreshCw size={24} />, [MaintenanceType.AIR_FILTER]: <Wind size={24} />,
+            [MaintenanceType.AC_FILTER]: <Fan size={24} />, [MaintenanceType.TIRE_ROTATION]: <RefreshCw size={24} className="rotate-90" />,
+            [MaintenanceType.BRAKE_FLUID]: <Droplets size={24} className="text-red-400" />, [MaintenanceType.COOLANT]: <Thermometer size={24} />,
+            [MaintenanceType.INSPECTION]: <Calendar size={24} />, [MaintenanceType.BATTERY]: <div className="font-bold text-xs border border-current rounded px-1">BAT</div>,
             [MaintenanceType.OTHER]: <Clock size={24} />,
         };
 
+        // --- Dashboard Component ---
         const Dashboard = ({ vehicle, logs, onQuickAdd, onSwitchVehicle, allVehicles }) => {
-            const [modalState, setModalState] = useState({
-                isOpen: false,
-                type: null,
-                date: getTodayString()
-            });
+            const [modalState, setModalState] = useState({ isOpen: false, type: null, date: getTodayString() });
 
-            const handleOpenModal = (type) => {
-                setModalState({
-                    isOpen: true,
-                    type,
-                    date: getTodayString()
-                });
-            };
-
-            const handleConfirm = () => {
-                if (modalState.type && modalState.date) {
-                    onQuickAdd(modalState.type, modalState.date);
-                    setModalState({ ...modalState, isOpen: false });
-                }
-            };
-            
             const statusItems = useMemo(() => {
-                const trackedTypes = [
-                    MaintenanceType.CAR_WASH,
-                    MaintenanceType.TIRE_PRESSURE,
-                    MaintenanceType.OIL_CHANGE,
-                    MaintenanceType.OIL_FILTER,
-                    MaintenanceType.WIPER,
-                    MaintenanceType.AC_FILTER,
-                    MaintenanceType.AIR_FILTER,
-                    MaintenanceType.BRAKE_FLUID,
-                    MaintenanceType.COOLANT,
-                    MaintenanceType.INSPECTION,
-                    MaintenanceType.BATTERY
-                ];
-
-                return trackedTypes.map(type => {
+                return Object.keys(INTERVALS).filter(t => t !== MaintenanceType.OTHER).map(type => {
                     const typeLogs = logs
                         .filter(l => l.vehicleId === vehicle.id && l.type === type)
-                        .sort((a, b) => b.date.localeCompare(a.date)); // 文字列として日付比較（正確）
+                        .sort((a, b) => b.date.localeCompare(a.date)); // 文字列比較で正確にソート
 
                     const lastLog = typeLogs[0];
                     const config = INTERVALS[type];
-                    
-                    let nextDate = null;
-                    let status = 'soon';
-                    let daysRemaining = 0;
+                    let nextDate = null, status = 'soon', daysRemaining = 0;
 
                     if (lastLog) {
                         const lastDate = new Date(lastLog.date);
                         nextDate = new Date(lastDate);
                         nextDate.setDate(lastDate.getDate() + config.days);
-                        
                         if (config.km && vehicle.currentMileage - lastLog.mileage >= config.km) {
-                            nextDate = new Date();
-                            status = 'overdue';
+                            nextDate = new Date(); status = 'overdue';
                         }
-
-                        const today = new Date();
-                        const diffTime = nextDate.getTime() - today.getTime();
-                        daysRemaining = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
+                        daysRemaining = Math.ceil((nextDate.getTime() - new Date().getTime()) / (86400000));
                         if (daysRemaining < 0) status = 'overdue';
                         else if (daysRemaining < 30) status = 'soon';
                         else status = 'good';
-                    } else {
-                        status = 'soon';
                     }
-
                     return { type, lastLog, nextDate, status, config, daysRemaining };
                 });
             }, [vehicle, logs]);
 
-            const getStatusColor = (status) => {
-                switch (status) {
-                    case 'good': return 'bg-emerald-50 text-emerald-700 border-emerald-100';
-                    case 'soon': return 'bg-amber-50 text-amber-700 border-amber-100';
-                    case 'overdue': return 'bg-red-50 text-red-700 border-red-100';
-                    default: return 'bg-slate-50 text-slate-700';
-                }
-            };
-
-            const getStatusIcon = (status) => {
-                switch (status) {
-                    case 'good': return <CheckCircle2 size={20} className="text-emerald-500" />;
-                    case 'soon': return <Clock size={20} className="text-amber-500" />;
-                    case 'overdue': return <AlertCircle size={20} className="text-red-500" />;
-                    default: return null;
-                }
-            };
+            const getStatusColor = (s) => s === 'good' ? 'bg-emerald-50 text-emerald-700 border-emerald-100' : s === 'overdue' ? 'bg-red-50 text-red-700 border-red-100' : 'bg-amber-50 text-amber-700 border-amber-100';
 
             return (
-                <div className="space-y-6 animate-fade-in max-w-2xl mx-auto">
+                <div className="space-y-6 animate-fade-in max-w-2xl mx-auto pb-20">
                     <div className="flex items-end justify-between mb-2">
                         <div>
                             <h2 className="text-lg font-bold text-slate-800">メンテナンス状況</h2>
                             {allVehicles.length > 1 ? (
                                 <div className="relative inline-block mt-1">
-                                    <select 
-                                        value={vehicle.id}
-                                        onChange={(e) => onSwitchVehicle(e.target.value)}
-                                        className="appearance-none bg-transparent text-sm text-slate-500 font-medium pr-6 py-1 focus:outline-none"
-                                    >
-                                        {allVehicles.map(v => (
-                                            <option key={v.id} value={v.id}>{v.make} {v.model}</option>
-                                        ))}
+                                    <select value={vehicle.id} onChange={(e) => onSwitchVehicle(e.target.value)} className="appearance-none bg-transparent text-sm text-slate-500 font-medium pr-6 py-1 focus:outline-none">
+                                        {allVehicles.map(v => <option key={v.id} value={v.id}>{v.make} {v.model}</option>)}
                                     </select>
                                     <ChevronDown size={14} className="absolute right-0 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
                                 </div>
-                            ) : (
-                                <p className="text-slate-500 text-sm mt-1">{vehicle.year ? vehicle.year + ' ' : ''}{vehicle.make} {vehicle.model}</p>
-                            )}
+                            ) : (<p className="text-slate-500 text-sm mt-1">{vehicle.make} {vehicle.model}</p>)}
                         </div>
                         <div className="text-right">
                             <p className="text-xs text-slate-400">現在の走行距離</p>
@@ -418,104 +240,47 @@
 
                     <div className="grid gap-4">
                         {statusItems.map((item) => (
-                            <div 
-                                key={item.type} 
-                                className={`relative p-5 rounded-2xl border-2 transition-all shadow-sm ${getStatusColor(item.status)}`}
-                            >
+                            <div key={item.type} className={`relative p-5 rounded-2xl border-2 transition-all shadow-sm ${getStatusColor(item.status)}`}>
                                 <div className="flex justify-between items-start">
                                     <div className="flex items-center gap-3 mb-3">
-                                        <div className={`p-2 rounded-xl bg-white/60 shadow-sm`}>
-                                            {ICONS[item.type]}
-                                        </div>
-                                        <div>
-                                            <h3 className="font-bold text-lg leading-tight">{item.type}</h3>
-                                            <p className="text-xs opacity-80 mt-1">{item.config.label}</p>
-                                        </div>
+                                        <div className="p-2 rounded-xl bg-white/60 shadow-sm">{ICONS[item.type]}</div>
+                                        <div><h3 className="font-bold text-lg leading-tight">{item.type}</h3><p className="text-xs opacity-80 mt-1">{item.config.label}</p></div>
                                     </div>
                                     <div className="bg-white/60 p-1.5 rounded-full backdrop-blur-sm">
-                                        {getStatusIcon(item.status)}
+                                        {item.status === 'good' ? <CheckCircle2 size={20} className="text-emerald-500"/> : item.status === 'overdue' ? <AlertCircle size={20} className="text-red-500"/> : <Clock size={20} className="text-amber-500"/>}
                                     </div>
                                 </div>
-
                                 <div className="grid grid-cols-2 gap-4 mt-2">
                                     <div className="bg-white/50 rounded-lg p-2.5">
                                         <p className="text-xs font-semibold opacity-60 uppercase mb-0.5">前回</p>
-                                        <p className="font-bold text-sm">
-                                            {item.lastLog ? item.lastLog.date : '記録なし'}
-                                        </p>
-                                        {item.lastLog && (
-                                            <p className="text-[10px] opacity-70 mt-0.5">
-                                                {/* 計算用だけDateオブジェクトを使う */}
-                                                {Math.floor((new Date().getTime() - new Date(item.lastLog.date).getTime()) / (1000 * 3600 * 24))}日前
-                                            </p>
-                                        )}
+                                        <p className="font-bold text-sm">{item.lastLog ? item.lastLog.date.replace(/-/g, '/') : '記録なし'}</p>
                                     </div>
-
                                     <div className="bg-white/50 rounded-lg p-2.5">
                                         <p className="text-xs font-semibold opacity-60 uppercase mb-0.5">次回目安</p>
-                                        <p className="font-bold text-sm">
-                                            {item.nextDate 
-                                                ? item.nextDate.toLocaleDateString('ja-JP', { year: 'numeric', month: '2-digit', day: '2-digit' })
-                                                : '---'
-                                            }
-                                        </p>
-                                        {item.status === 'overdue' ? (
-                                             <p className="text-[10px] font-bold text-red-600 mt-0.5">期限切れ</p>
-                                        ) : (
-                                            <p className="text-[10px] opacity-70 mt-0.5">
-                                                 {item.daysRemaining > 0 ? `あと ${item.daysRemaining}日` : 'そろそろ'}
-                                            </p>
-                                        )}
+                                        <p className="font-bold text-sm">{item.nextDate ? item.nextDate.toLocaleDateString('ja-JP') : '---'}</p>
+                                        <p className="text-[10px] opacity-70 mt-0.5">{item.status === 'overdue' ? '期限切れ' : item.daysRemaining > 0 ? `あと ${item.daysRemaining}日` : 'そろそろ'}</p>
                                     </div>
                                 </div>
-
-                                <button 
-                                    onClick={() => handleOpenModal(item.type)}
-                                    className="mt-4 w-full py-2.5 bg-white rounded-xl text-sm font-bold shadow-sm hover:shadow-md hover:scale-[1.01] transition-all flex items-center justify-center gap-2 active:scale-95 text-slate-800"
-                                >
-                                    <Plus size={16} />
-                                    完了・記録する
+                                <button onClick={() => setModalState({ isOpen: true, type: item.type, date: getTodayString() })} className="mt-4 w-full py-2.5 bg-white rounded-xl text-sm font-bold shadow-sm hover:shadow-md flex items-center justify-center gap-2 text-slate-800">
+                                    <Plus size={16} /> 完了・記録する
                                 </button>
                             </div>
                         ))}
                     </div>
 
-                    {/* モーダル (画面上部固定) */}
                     {modalState.isOpen && (
                         <div className="modal-overlay">
                             <div className="modal-content bg-white rounded-2xl shadow-2xl w-[90%] max-w-[320px] animate-fade-in p-6 relative">
-                                <button 
-                                    onClick={() => setModalState({...modalState, isOpen: false})} 
-                                    className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1"
-                                >
-                                    <X size={20} />
-                                </button>
-                                
-                                <h3 className="text-xl font-bold text-slate-800 mb-8 mt-1 text-center">
-                                  {modalState.type}
-                                </h3>
-
+                                <button onClick={() => setModalState({...modalState, isOpen: false})} className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1"><X size={20} /></button>
+                                <h3 className="text-xl font-bold text-slate-800 mb-8 mt-1 text-center">{modalState.type}</h3>
                                 <div className="mb-8 text-center">
                                     <p className="text-xs text-slate-400 mb-2 font-medium">日付を選択</p>
                                     <div className="date-input-container shadow-inner">
-                                        <div className="date-input-display">
-                                            {modalState.date.replace(/-/g, '/')}
-                                        </div>
-                                        <input
-                                            type="date"
-                                            value={modalState.date}
-                                            onChange={(e) => setModalState({...modalState, date: e.target.value})}
-                                            className="custom-date-input"
-                                        />
+                                        <div className="date-input-display">{modalState.date.replace(/-/g, '/')}</div>
+                                        <input type="date" value={modalState.date} onChange={(e) => setModalState({...modalState, date: e.target.value})} className="custom-date-input" />
                                     </div>
                                 </div>
-
-                                <button
-                                    onClick={handleConfirm}
-                                    className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200 text-sm active:transform active:scale-95"
-                                >
-                                    保存する
-                                </button>
+                                <button onClick={() => { onQuickAdd(modalState.type, modalState.date); setModalState({...modalState, isOpen: false}); }} className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 shadow-lg shadow-blue-200 text-sm">保存する</button>
                             </div>
                         </div>
                     )}
@@ -523,498 +288,48 @@
             );
         };
 
-        // --- components/MaintenanceList.tsx ---
-        const MaintenanceList = ({ logs, onAddLog, onDeleteLog, vehicle }) => {
-            const [isModalOpen, setIsModalOpen] = useState(false);
-            const [filterType, setFilterType] = useState('All');
-            const [searchTerm, setSearchTerm] = useState('');
-
-            const [newLog, setNewLog] = useState({
-                type: MaintenanceType.OIL_CHANGE,
-                date: getTodayString(),
-                cost: 0,
-                mileage: vehicle.currentMileage,
-                notes: '',
-                shopName: ''
-            });
-
-            const handleSubmit = (e) => {
-                e.preventDefault();
-                if (newLog.date && newLog.type && newLog.cost !== undefined && newLog.mileage) {
-                    onAddLog({
-                        vehicleId: vehicle.id,
-                        date: newLog.date,
-                        type: newLog.type,
-                        cost: Number(newLog.cost),
-                        mileage: Number(newLog.mileage),
-                        notes: newLog.notes || '',
-                        shopName: newLog.shopName || ''
-                    });
-                    setIsModalOpen(false);
-                    setNewLog({
-                        type: MaintenanceType.OIL_CHANGE,
-                        date: getTodayString(),
-                        cost: 0,
-                        mileage: vehicle.currentMileage,
-                        notes: '',
-                        shopName: ''
-                    });
-                }
-            };
-
-            const filteredLogs = logs
-                .filter(log => log.vehicleId === vehicle.id)
-                .filter(log => filterType === 'All' || log.type === filterType)
-                .filter(log => 
-                    log.notes.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                    log.shopName?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                    log.type.toLowerCase().includes(searchTerm.toLowerCase())
-                )
-                .sort((a, b) => b.date.localeCompare(a.date));
-
-            return (
-                <div className="space-y-4 h-full flex flex-col">
-                    <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 bg-white p-4 rounded-xl shadow-sm border border-slate-100">
-                        <div className="relative flex-1">
-                            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400" size={18} />
-                            <input
-                                type="text"
-                                placeholder="記録を検索..."
-                                value={searchTerm}
-                                onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
-                            />
-                        </div>
-                        
-                        <div className="flex gap-2 overflow-x-auto pb-1 md:pb-0">
-                            <select 
-                                value={filterType}
-                                onChange={(e) => setFilterType(e.target.value)}
-                                className="px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            >
-                                <option value="All">すべてのタイプ</option>
-                                {Object.values(MaintenanceType).map(t => (
-                                    <option key={t} value={t}>{t}</option>
-                                ))}
-                            </select>
-
-                            <button
-                                onClick={() => setIsModalOpen(true)}
-                                className="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors whitespace-nowrap"
-                            >
-                                <Plus size={18} />
-                                記録を追加
-                            </button>
-                        </div>
-                    </div>
-
-                    <div className="flex-1 overflow-y-auto bg-white rounded-xl shadow-sm border border-slate-100 p-2">
-                        {filteredLogs.length === 0 ? (
-                            <div className="h-64 flex flex-col items-center justify-center text-slate-400">
-                                <Filter size={32} className="mb-2 opacity-50" />
-                                <p>記録が見つかりません。</p>
-                            </div>
-                        ) : (
-                            <table className="w-full text-left text-sm">
-                                <thead className="bg-slate-50 text-slate-500 font-medium">
-                                    <tr>
-                                        <th className="p-3 rounded-tl-lg">日付</th>
-                                        <th className="p-3">タイプ</th>
-                                        <th className="p-3">走行距離 (km)</th>
-                                        <th className="p-3 hidden md:table-cell">店舗</th>
-                                        <th className="p-3">費用</th>
-                                        <th className="p-3 rounded-tr-lg w-10"></th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-slate-100">
-                                    {filteredLogs.map(log => (
-                                        <tr key={log.id} className="hover:bg-slate-50 transition-colors group">
-                                            <td className="p-3 text-slate-900 font-medium">{log.date}</td>
-                                            <td className="p-3">
-                                                <span className={`px-2 py-1 rounded-full text-xs font-medium ${log.type === MaintenanceType.OIL_CHANGE ? 'bg-blue-100 text-blue-700' : 'bg-emerald-100 text-emerald-700'}`}>
-                                                    {log.type}
-                                                </span>
-                                            </td>
-                                            <td className="p-3 text-slate-600">{log.mileage.toLocaleString()}</td>
-                                            <td className="p-3 text-slate-600 hidden md:table-cell">{log.shopName || '-'}</td>
-                                            <td className="p-3 text-slate-900 font-semibold">¥{log.cost.toLocaleString()}</td>
-                                            <td className="p-3 text-right">
-                                                <button 
-                                                    onClick={() => onDeleteLog(log.id)}
-                                                    className="text-slate-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
-                                                >
-                                                    <Trash2 size={16} />
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))}
-                                </tbody>
-                            </table>
-                        )}
-                    </div>
-
-                    {isModalOpen && (
-                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                            <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden animate-fade-in">
-                                <div className="p-6 border-b border-slate-100">
-                                    <h3 className="text-xl font-bold text-slate-900">整備記録を追加</h3>
-                                </div>
-                                <form onSubmit={handleSubmit} className="p-6 space-y-4">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">日付</label>
-                                            <input
-                                                type="date"
-                                                required
-                                                value={newLog.date}
-                                                onChange={e => setNewLog({...newLog, date: e.target.value})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">タイプ</label>
-                                            <select
-                                                value={newLog.type}
-                                                onChange={e => setNewLog({...newLog, type: e.target.value})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            >
-                                                {Object.values(MaintenanceType).map(t => (
-                                                    <option key={t} value={t}>{t}</option>
-                                                ))}
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">走行距離 (km)</label>
-                                            <input
-                                                type="number"
-                                                required
-                                                placeholder="例: 45000"
-                                                value={newLog.mileage}
-                                                onChange={e => setNewLog({...newLog, mileage: Number(e.target.value)})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">費用 (¥)</label>
-                                            <input
-                                                type="number"
-                                                step="1"
-                                                required
-                                                placeholder="0"
-                                                value={newLog.cost}
-                                                onChange={e => setNewLog({...newLog, cost: Number(e.target.value)})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-500 mb-1">店舗 / 整備工場</label>
-                                        <input
-                                            type="text"
-                                            placeholder="例: ディーラー、オートバックス"
-                                            value={newLog.shopName}
-                                            onChange={e => setNewLog({...newLog, shopName: e.target.value})}
-                                            className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label className="block text-xs font-semibold text-slate-500 mb-1">メモ</label>
-                                        <textarea
-                                            rows={3}
-                                            placeholder="詳細を入力..."
-                                            value={newLog.notes}
-                                            onChange={e => setNewLog({...newLog, notes: e.target.value})}
-                                            className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none resize-none"
-                                        ></textarea>
-                                    </div>
-
-                                    <div className="flex gap-3 pt-2">
-                                        <button
-                                            type="button"
-                                            onClick={() => setIsModalOpen(false)}
-                                            className="flex-1 py-2.5 bg-slate-100 text-slate-700 font-semibold rounded-lg hover:bg-slate-200 transition-colors"
-                                        >
-                                            キャンセル
-                                        </button>
-                                        <button
-                                            type="submit"
-                                            className="flex-1 py-2.5 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors"
-                                        >
-                                            保存
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            );
-        };
-
-        // --- components/AiAdvisor.tsx ---
-        const AiAdvisor = ({ vehicle, logs }) => {
-            const [apiKey, setApiKey] = useState(getApiKey());
-            const [tempKey, setTempKey] = useState('');
-            
-            const [messages, setMessages] = useState([
-                {
-                    id: 'welcome',
-                    role: 'model',
-                    text: `こんにちは！AI整備士アシスタントです。**${vehicle.year || ''} ${vehicle.make} ${vehicle.model}** のメンテナンススケジュール、エラーコードの診断、費用の分析などをお手伝いします。本日はどうされましたか？`
-                }
-            ]);
-            const [input, setInput] = useState('');
-            const [isLoading, setIsLoading] = useState(false);
-            const scrollRef = useRef(null);
-
-            useEffect(() => {
-                if (scrollRef.current) {
-                    scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-                }
-            }, [messages, isLoading]);
-
-            const handleSaveKey = () => {
-                if (tempKey.trim()) {
-                    saveApiKey(tempKey.trim());
-                    setApiKey(tempKey.trim());
-                }
-            };
-
-            const handleSend = async () => {
-                if (!input.trim() || isLoading || !apiKey) return;
-
-                const userMsg = {
-                    id: Date.now().toString(),
-                    role: 'user',
-                    text: input
-                };
-
-                setMessages(prev => [...prev, userMsg]);
-                setInput('');
-                setIsLoading(true);
-
-                try {
-                    const responseText = await getMaintenanceAdvice(vehicle, userMsg.text, logs, apiKey);
-                    const botMsg = {
-                        id: (Date.now() + 1).toString(),
-                        role: 'model',
-                        text: responseText
-                    };
-                    setMessages(prev => [...prev, botMsg]);
-                } catch (err) {
-                    const errorMsg = {
-                        id: (Date.now() + 1).toString(),
-                        role: 'model',
-                        text: "申し訳ありません。接続に問題が発生しています。APIキーの設定をご確認ください。",
-                        isError: true
-                    };
-                    setMessages(prev => [...prev, errorMsg]);
-                } finally {
-                    setIsLoading(false);
-                }
-            };
-
-            const handleKeyDown = (e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                    e.preventDefault();
-                    handleSend();
-                }
-            };
-
-            const quickPrompts = [
-                "次回のオイル交換はいつ？",
-                "メンテナンス費用を分析して",
-                "エンジンチェックランプの意味は？",
-                "このモデルによくある不具合は？"
-            ];
-
-            if (!apiKey) {
-                return (
-                    <div className="flex flex-col items-center justify-center h-full bg-white rounded-xl shadow-sm border border-slate-100 p-8 text-center">
-                        <div className="bg-blue-100 p-4 rounded-full mb-4 text-blue-600">
-                            <Key size={32} />
-                        </div>
-                        <h2 className="text-xl font-bold text-slate-800 mb-2">APIキーの設定</h2>
-                        <p className="text-slate-500 mb-6 max-w-md">
-                            AIアドバイザーを使用するには、Google Gemini APIキーが必要です。<br/>
-                            Google AI Studioで無料で取得できます。
-                        </p>
-                        
-                        <div className="w-full max-w-sm space-y-3">
-                            <input
-                                type="password"
-                                placeholder="APIキーを入力..."
-                                value={tempKey}
-                                onChange={(e) => setTempKey(e.target.value)}
-                                className="w-full p-3 border border-slate-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-slate-800"
-                            />
-                            <button
-                                onClick={handleSaveKey}
-                                disabled={!tempKey.trim()}
-                                className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-50"
-                            >
-                                保存して開始
-                            </button>
-                        </div>
-
-                        <div className="mt-8 text-xs text-slate-400">
-                            <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noreferrer" className="text-blue-600 hover:underline">
-                                Google AI StudioでAPIキーを取得 →
-                            </a>
-                            <p className="mt-2">※ 入力されたキーはブラウザ内にのみ保存されます。</p>
-                        </div>
-                    </div>
-                );
-            }
-
-            return (
-                <div className="flex flex-col h-[calc(100vh-140px)] md:h-full bg-white rounded-xl shadow-sm border border-slate-100 overflow-hidden">
-                    <div className="bg-gradient-to-r from-blue-600 to-indigo-600 p-4 flex items-center gap-3">
-                        <div className="bg-white/20 p-2 rounded-full backdrop-blur-sm">
-                            <Sparkles className="text-white" size={20} />
-                        </div>
-                        <div>
-                            <h2 className="text-white font-bold">AI整備士アドバイザー</h2>
-                            <p className="text-blue-100 text-xs">Powered by Gemini 2.5 Flash</p>
-                        </div>
-                    </div>
-
-                    <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 space-y-6 bg-slate-50">
-                        {messages.map((msg) => (
-                            <div key={msg.id} className={`flex gap-3 ${msg.role === 'user' ? 'flex-row-reverse' : 'flex-row'}`}>
-                                <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center ${msg.role === 'user' ? 'bg-slate-800 text-white' : 'bg-blue-600 text-white'}`}>
-                                    {msg.role === 'user' ? <User size={16} /> : <Bot size={16} />}
-                                </div>
-                                
-                                <div className={`max-w-[85%] rounded-2xl p-4 text-sm leading-relaxed shadow-sm ${msg.role === 'user' ? 'bg-slate-800 text-white rounded-tr-none' : 'bg-white text-slate-800 border border-slate-100 rounded-tl-none'}`}>
-                                    {msg.isError ? (
-                                        <span className="text-red-500">{msg.text}</span>
-                                    ) : (
-                                        <ReactMarkdown 
-                                            components={{
-                                                ul: ({node, ...props}) => <ul className="list-disc ml-4 my-2 space-y-1" {...props} />,
-                                                ol: ({node, ...props}) => <ol className="list-decimal ml-4 my-2 space-y-1" {...props} />,
-                                                strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
-                                                p: ({node, ...props}) => <p className="mb-2 last:mb-0" {...props} />
-                                            }}
-                                        >
-                                            {msg.text}
-                                        </ReactMarkdown>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-                        {isLoading && (
-                            <div className="flex gap-3">
-                                <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center">
-                                    <Bot size={16} />
-                                </div>
-                                <div className="bg-white p-4 rounded-2xl rounded-tl-none border border-slate-100 shadow-sm flex items-center gap-2">
-                                    <Loader2 className="animate-spin text-blue-600" size={18} />
-                                    <span className="text-slate-500 text-sm">考え中...</span>
-                                </div>
-                            </div>
-                        )}
-                    </div>
-
-                    {messages.length < 3 && !isLoading && (
-                        <div className="px-4 py-2 bg-slate-50 flex gap-2 overflow-x-auto">
-                            {quickPrompts.map((prompt, idx) => (
-                                <button
-                                    key={idx}
-                                    onClick={() => { setInput(prompt); }}
-                                    className="text-xs bg-white border border-slate-200 text-slate-600 px-3 py-1.5 rounded-full hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-colors whitespace-nowrap"
-                                >
-                                    {prompt}
-                                </button>
-                            ))}
-                        </div>
-                    )}
-
-                    <div className="p-4 bg-white border-t border-slate-100">
-                        <div className="relative flex items-center">
-                            <textarea
-                                value={input}
-                                onChange={(e) => setInput(e.target.value)}
-                                onKeyDown={handleKeyDown}
-                                placeholder="整備、修理、費用について質問..."
-                                rows={1}
-                                className="w-full pl-4 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition-all resize-none overflow-hidden"
-                                style={{ minHeight: '48px' }}
-                            />
-                            <button
-                                onClick={handleSend}
-                                disabled={!input.trim() || isLoading}
-                                className="absolute right-2 p-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                            >
-                                <Send size={18} />
-                            </button>
-                        </div>
-                        <p className="text-[10px] text-center text-slate-400 mt-2">
-                            AIのアドバイスは不正確な場合があります。必ず専門家に相談してください。
-                        </p>
-                    </div>
-                </div>
-            );
-        };
-
-        // --- components/VehicleManager.tsx ---
+        // --- VehicleManager Component ---
         const VehicleManager = ({ vehicles, logs, activeVehicleId, onSetActive, onAddVehicle, onUpdateVehicle, onDeleteVehicle, onRestoreData }) => {
             const [isAdding, setIsAdding] = useState(false);
-            const [newVehicle, setNewVehicle] = useState({
-                make: '', model: '', year: undefined, currentMileage: 0
-            });
+            const [newVehicle, setNewVehicle] = useState({ make: '', model: '', year: '', currentMileage: 0 });
             const [deletingId, setDeletingId] = useState(null);
             const fileInputRef = useRef(null);
 
             const handleSave = () => {
                 if (newVehicle.make && newVehicle.model) {
-                    const v = {
+                    onAddVehicle({
                         id: Date.now().toString(),
-                        make: newVehicle.make,
-                        model: newVehicle.model,
+                        make: newVehicle.make, model: newVehicle.model,
                         year: newVehicle.year ? Number(newVehicle.year) : undefined,
                         currentMileage: Number(newVehicle.currentMileage) || 0,
                         imageUrl: `https://picsum.photos/seed/${Date.now()}/400/200`
-                    };
-                    onAddVehicle(v);
+                    });
                     setIsAdding(false);
-                    setNewVehicle({ make: '', model: '', year: undefined, currentMileage: 0 });
+                    setNewVehicle({ make: '', model: '', year: '', currentMileage: 0 });
                 }
             };
 
-            const handleUpdateMileage = (id, mileage) => {
-                const v = vehicles.find(v => v.id === id);
-                if (v) {
-                    onUpdateVehicle({ ...v, currentMileage: mileage });
-                }
-            };
-
-            const onRequestDelete = (e, id) => {
-                e.preventDefault();
-                e.stopPropagation();
-                setDeletingId(id);
-            };
-
-            const confirmDelete = () => {
-                if (deletingId) {
-                    onDeleteVehicle(deletingId);
-                    setDeletingId(null);
-                }
-            };
-
-            const handleExport = () => {
-                const data = {
-                    version: 1,
-                    timestamp: new Date().toISOString(),
-                    vehicles: vehicles,
-                    logs: logs
+            const handleFileChange = (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        if (data.vehicles && data.logs) {
+                            if(confirm('データを復元しますか？現在のデータは上書きされます。')) {
+                                onRestoreData(data.vehicles, data.logs);
+                                alert('復元しました');
+                            }
+                        }
+                    } catch (err) { alert('ファイル読み込みエラー'); }
                 };
+                reader.readAsText(file);
+                e.target.value = '';
+            };
+
+            const downloadBackup = () => {
+                const data = { vehicles, logs, timestamp: new Date().toISOString() };
                 const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
@@ -1023,209 +338,72 @@
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-            };
-
-            const handleImportClick = () => {
-                fileInputRef.current?.click();
-            };
-
-            const handleFileChange = (e) => {
-                const file = e.target.files[0];
-                if (!file) return;
-
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    try {
-                        const data = JSON.parse(event.target.result);
-                        if (data.vehicles && Array.isArray(data.vehicles) && data.logs && Array.isArray(data.logs)) {
-                            if(window.confirm('現在のデータを上書きして復元しますか？')) {
-                                onRestoreData(data.vehicles, data.logs);
-                                alert('データを復元しました');
-                            }
-                        } else {
-                            alert('無効なバックアップファイルです');
-                        }
-                    } catch (err) {
-                        alert('ファイルの読み込みに失敗しました');
-                        console.error(err);
-                    }
-                };
-                reader.readAsText(file);
-                e.target.value = ''; // Reset input
             };
 
             return (
                 <div className="space-y-6 pb-20">
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {vehicles.map(v => (
-                            <div 
-                                key={v.id}
-                                className={`relative group overflow-hidden rounded-xl border-2 transition-all cursor-pointer bg-white select-none ${v.id === activeVehicleId ? 'border-blue-500 shadow-md ring-2 ring-blue-100' : 'border-slate-100 hover:border-blue-200'}`}
-                                onClick={() => onSetActive(v.id)}
-                            >
+                            <div key={v.id} onClick={() => onSetActive(v.id)} className={`relative group overflow-hidden rounded-xl border-2 transition-all cursor-pointer bg-white ${v.id === activeVehicleId ? 'border-blue-500 shadow-md ring-2 ring-blue-100' : 'border-slate-100'}`}>
                                 <div className="h-32 bg-slate-200 relative">
-                                    <img src={v.imageUrl} alt={v.model} className="w-full h-full object-cover opacity-90" />
-                                    {v.id === activeVehicleId && (
-                                        <div className="absolute top-2 right-2 bg-blue-500 text-white p-1 rounded-full shadow-sm z-10">
-                                            <Check size={14} />
-                                        </div>
-                                    )}
-                                    <button 
-                                        onClick={(e) => onRequestDelete(e, v.id)}
-                                        className="absolute top-2 left-2 z-30 bg-white/90 text-red-600 p-2.5 rounded-lg shadow-md border border-red-100 hover:bg-red-50 active:bg-red-100 transition-all transform active:scale-95"
-                                        title="車両を削除"
-                                    >
-                                        <Trash2 size={18} />
-                                    </button>
+                                    <img src={v.imageUrl} className="w-full h-full object-cover opacity-90" />
+                                    {v.id === activeVehicleId && <div className="absolute top-2 right-2 bg-blue-500 text-white p-1 rounded-full"><Check size={14} /></div>}
+                                    <button onClick={(e) => { e.stopPropagation(); setDeletingId(v.id); }} className="absolute top-2 left-2 bg-white/90 text-red-600 p-2.5 rounded-lg shadow-md hover:bg-red-50"><Trash2 size={18} /></button>
                                 </div>
                                 <div className="p-4">
-                                    <h3 className="font-bold text-lg text-slate-800">{v.year || ''} {v.make} {v.model}</h3>
-                                    <div className="flex items-center gap-2 mt-2" onClick={(e) => e.stopPropagation()}>
-                                        <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">走行距離 (km)</span>
-                                        <input 
-                                            type="number"
-                                            className="w-24 text-sm bg-slate-50 border border-slate-200 rounded px-2 py-1 focus:ring-1 focus:ring-blue-500 outline-none"
-                                            value={v.currentMileage}
-                                            onChange={(e) => handleUpdateMileage(v.id, parseInt(e.target.value) || 0)}
-                                        />
+                                    <h3 className="font-bold text-lg text-slate-800">{v.year} {v.make} {v.model}</h3>
+                                    <div onClick={e => e.stopPropagation()} className="flex items-center gap-2 mt-2">
+                                        <span className="text-xs font-semibold text-slate-500">走行距離</span>
+                                        <input type="number" className="w-24 text-sm bg-slate-50 border border-slate-200 rounded px-2 py-1" value={v.currentMileage} onChange={(e) => onUpdateVehicle({ ...v, currentMileage: parseInt(e.target.value) || 0 })} />
                                     </div>
                                 </div>
                             </div>
                         ))}
-                        <button
-                            onClick={() => setIsAdding(true)}
-                            className="h-full min-h-[200px] flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-colors text-slate-500 hover:text-blue-600 gap-2"
-                        >
-                            <div className="p-3 bg-slate-100 rounded-full group-hover:bg-white">
-                                <Plus size={24} />
-                            </div>
-                            <span className="font-medium">車両を追加</span>
+                        <button onClick={() => setIsAdding(true)} className="h-full min-h-[200px] flex flex-col items-center justify-center border-2 border-dashed border-slate-300 rounded-xl hover:bg-blue-50 text-slate-500 gap-2">
+                            <div className="p-3 bg-slate-100 rounded-full"><Plus size={24} /></div><span className="font-medium">車両を追加</span>
                         </button>
                     </div>
-
+                    
                     <div className="mt-8 pt-8 border-t border-slate-200">
                         <h3 className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">データ管理</h3>
                         <div className="flex gap-4">
-                            <button 
-                                onClick={handleExport}
-                                className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors shadow-sm"
-                            >
+                            <button onClick={downloadBackup} className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 shadow-sm">
                                 <Save size={20} className="text-blue-500 mb-1" />
-                                <span>バックアップ</span>
-                                <span className="text-xs text-slate-500">(保存)</span>
+                                <span>バックアップ</span><span className="text-xs text-slate-500">(保存)</span>
                             </button>
-                            <button 
-                                onClick={handleImportClick}
-                                className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 transition-colors shadow-sm"
-                            >
+                            <button onClick={() => fileInputRef.current?.click()} className="flex-1 flex flex-col items-center justify-center gap-1 px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-700 font-medium hover:bg-slate-50 shadow-sm">
                                 <Upload size={20} className="text-emerald-500 mb-1" />
-                                <span>復元</span>
-                                <span className="text-xs text-slate-500">(読み込み)</span>
+                                <span>復元</span><span className="text-xs text-slate-500">(読み込み)</span>
                             </button>
-                            <input 
-                                type="file" 
-                                ref={fileInputRef}
-                                onChange={handleFileChange} 
-                                accept=".json" 
-                                className="hidden" 
-                            />
+                            <input type="file" ref={fileInputRef} onChange={handleFileChange} accept=".json" className="hidden" />
                         </div>
                     </div>
 
                     {isAdding && (
-                        <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-                            <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 animate-fade-in" onClick={e => e.stopPropagation()}>
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl shadow-xl w-full max-w-md p-6 animate-fade-in" onClick={e => e.stopPropagation()}>
                                 <div className="flex justify-between items-center mb-6">
-                                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2">
-                                        <Car className="text-blue-600" /> 新しい車両を追加
-                                    </h3>
-                                    <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-slate-600">
-                                        <X size={24} />
-                                    </button>
+                                    <h3 className="text-xl font-bold text-slate-900 flex items-center gap-2"><Car className="text-blue-600" /> 新しい車両を追加</h3>
+                                    <button onClick={() => setIsAdding(false)} className="text-slate-400 hover:text-slate-600"><X size={24} /></button>
                                 </div>
                                 <div className="space-y-4">
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">メーカー</label>
-                                            <input
-                                                type="text"
-                                                placeholder="トヨタ"
-                                                value={newVehicle.make}
-                                                onChange={(e) => setNewVehicle({...newVehicle, make: e.target.value})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">モデル</label>
-                                            <input
-                                                type="text"
-                                                placeholder="プリウス"
-                                                value={newVehicle.model}
-                                                onChange={(e) => setNewVehicle({...newVehicle, model: e.target.value})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">年式 (任意)</label>
-                                            <input
-                                                type="number"
-                                                placeholder="2020"
-                                                value={newVehicle.year || ''}
-                                                onChange={(e) => setNewVehicle({...newVehicle, year: parseInt(e.target.value)})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                        <div>
-                                            <label className="block text-xs font-semibold text-slate-500 mb-1">現在の走行距離 (km)</label>
-                                            <input
-                                                type="number"
-                                                placeholder="0"
-                                                value={newVehicle.currentMileage}
-                                                onChange={(e) => setNewVehicle({...newVehicle, currentMileage: parseInt(e.target.value)})}
-                                                className="w-full p-2 border border-slate-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none"
-                                            />
-                                        </div>
-                                    </div>
-                                    <button
-                                        onClick={handleSave}
-                                        disabled={!newVehicle.make || !newVehicle.model}
-                                        className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-all mt-4"
-                                    >
-                                        車両を追加
-                                    </button>
+                                    <input type="text" placeholder="メーカー (例: トヨタ)" value={newVehicle.make} onChange={(e) => setNewVehicle({...newVehicle, make: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="text" placeholder="モデル (例: プリウス)" value={newVehicle.model} onChange={(e) => setNewVehicle({...newVehicle, model: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="number" placeholder="年式 (任意)" value={newVehicle.year} onChange={(e) => setNewVehicle({...newVehicle, year: e.target.value})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <input type="number" placeholder="現在の走行距離 (km)" value={newVehicle.currentMileage} onChange={(e) => setNewVehicle({...newVehicle, currentMileage: parseInt(e.target.value)})} className="w-full p-2 border border-slate-200 rounded-lg" />
+                                    <button onClick={handleSave} disabled={!newVehicle.make || !newVehicle.model} className="w-full py-3 bg-blue-600 text-white font-bold rounded-lg mt-4">車両を追加</button>
                                 </div>
                             </div>
                         </div>
                     )}
-
                     {deletingId && (
-                        <div className="fixed inset-0 bg-black/60 z-[60] flex items-center justify-center p-4 backdrop-blur-sm">
-                            <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 animate-fade-in" onClick={e => e.stopPropagation()}>
-                                <div className="flex flex-col items-center text-center mb-6">
-                                    <div className="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mb-4 text-red-600">
-                                        <AlertTriangle size={24} />
-                                    </div>
-                                    <h3 className="text-xl font-bold text-slate-900">車両を削除しますか？</h3>
-                                    <p className="text-sm text-slate-500 mt-2">
-                                        この車両と、関連するすべてのメンテナンス履歴が完全に削除されます。この操作は取り消せません。
-                                    </p>
-                                </div>
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl shadow-xl w-full max-w-sm p-6 animate-fade-in">
+                                <h3 className="text-xl font-bold text-center text-slate-900 mb-2">削除しますか？</h3>
+                                <p className="text-center text-slate-500 text-sm mb-6">この操作は取り消せません。</p>
                                 <div className="flex gap-3">
-                                    <button
-                                        onClick={() => setDeletingId(null)}
-                                        className="flex-1 py-3 bg-slate-100 text-slate-700 font-bold rounded-xl hover:bg-slate-200 transition-colors"
-                                    >
-                                        キャンセル
-                                    </button>
-                                    <button
-                                        onClick={confirmDelete}
-                                        className="flex-1 py-3 bg-red-600 text-white font-bold rounded-xl hover:bg-red-700 shadow-lg shadow-red-200 transition-colors"
-                                    >
-                                        削除する
-                                    </button>
+                                    <button onClick={() => setDeletingId(null)} className="flex-1 py-3 bg-slate-100 rounded-xl font-bold">キャンセル</button>
+                                    <button onClick={() => { onDeleteVehicle(deletingId); setDeletingId(null); }} className="flex-1 py-3 bg-red-600 text-white rounded-xl font-bold">削除する</button>
                                 </div>
                             </div>
                         </div>
@@ -1234,283 +412,173 @@
             );
         };
 
-        // --- App.tsx ---
-        const App = () => {
-            const [activeView, setActiveView] = useState('dashboard');
-            const [vehicles, setVehicles] = useState([]);
-            const [logs, setLogs] = useState([]);
-            const [activeVehicleId, setActiveVehicleId] = useState('');
+        // --- Other Components ---
+        const MaintenanceList = ({ logs, onAddLog, onDeleteLog, vehicle }) => {
+            const [isModalOpen, setIsModalOpen] = useState(false);
+            const [filterType, setFilterType] = useState('All');
+            const [newLog, setNewLog] = useState({ type: 'オイル交換', date: getTodayString(), cost: 0, mileage: vehicle.currentMileage, notes: '', shopName: '' });
 
-            useEffect(() => {
-                let loadedVehicles = getVehicles();
-                let loadedLogs = getLogs();
-
-                if (loadedVehicles.length === 0) {
-                    const data = seedData();
-                    loadedVehicles = data.vehicles;
-                    loadedLogs = data.logs;
-                }
-
-                setVehicles(loadedVehicles);
-                setLogs(loadedLogs);
-                if (loadedVehicles.length > 0) {
-                    setActiveVehicleId(loadedVehicles[0].id);
-                }
-            }, []);
-
-            useEffect(() => {
-                saveVehicles(vehicles);
-            }, [vehicles]);
-
-            useEffect(() => {
-                if (logs.length > 0) saveLogs(logs);
-            }, [logs]);
-
-            useEffect(() => {
-                if (vehicles.length > 0) {
-                    const exists = vehicles.find(v => v.id === activeVehicleId);
-                    if (!exists) {
-                        setActiveVehicleId(vehicles[0].id);
-                    }
-                }
-            }, [vehicles, activeVehicleId]);
-
-            const activeVehicle = vehicles.find(v => v.id === activeVehicleId);
-
-            const handleAddLog = (newLog) => {
-                const log = { ...newLog, id: Date.now().toString() };
-                setLogs(prev => [log, ...prev]);
-                
-                const currentVehicle = vehicles.find(v => v.id === newLog.vehicleId);
-                if (currentVehicle && newLog.mileage > currentVehicle.currentMileage) {
-                    handleUpdateVehicle({ ...currentVehicle, currentMileage: newLog.mileage });
+            const handleSubmit = () => {
+                if (newLog.date && newLog.type) {
+                    onAddLog({ vehicleId: vehicle.id, ...newLog, cost: Number(newLog.cost), mileage: Number(newLog.mileage) });
+                    setIsModalOpen(false);
                 }
             };
+            const filtered = logs.filter(l => l.vehicleId === vehicle.id && (filterType === 'All' || l.type === filterType)).sort((a, b) => b.date.localeCompare(a.date));
 
-            const handleDeleteLog = (id) => {
-                setLogs(prev => prev.filter(l => l.id !== id));
-            };
-
-            const handleQuickAdd = (type, date) => {
-                if (!activeVehicle) return;
-                
-                // その車両・タイプの全ログを取得し、最新順（日付降順）に並べる
-                const typeLogs = logs
-                    .filter(l => l.vehicleId === activeVehicle.id && l.type === type)
-                    .sort((a, b) => b.date.localeCompare(a.date));
-
-                // 一番新しいログを取得
-                const latestLog = typeLogs[0];
-
-                if (latestLog) {
-                    // 最新のログがあれば、その日付を入力された日付に強制的に上書き更新する
-                    // これにより、ホーム画面（最新ログを参照する）は必ず入力日付になる
-                    const updatedLogs = logs.map(l => {
-                        if (l.id === latestLog.id) {
-                            return { ...l, date: date };
-                        }
-                        return l;
-                    });
-                    setLogs(updatedLogs);
-                } else {
-                    // 履歴がなければ新規作成
-                    const log = {
-                        id: Date.now().toString(),
-                        vehicleId: activeVehicle.id,
-                        date: date,
-                        type: type,
-                        cost: 0,
-                        mileage: activeVehicle.currentMileage,
-                        notes: 'クイック追加',
-                        shopName: ''
-                    };
-                    handleAddLog(log);
-                }
-            };
-
-            const handleAddVehicle = (v) => {
-                setVehicles(prev => [...prev, v]);
-                setActiveVehicleId(v.id);
-            };
-
-            const handleUpdateVehicle = (updatedVehicle) => {
-                setVehicles(prev => prev.map(v => v.id === updatedVehicle.id ? updatedVehicle : v));
-            };
-
-            const handleDeleteVehicle = (id) => {
-                setLogs(prevLogs => prevLogs.filter(log => log.vehicleId !== id));
-                const updatedVehicles = vehicles.filter(v => v.id !== id);
-                setVehicles(updatedVehicles);
-                
-                if (activeVehicleId === id) {
-                    if (updatedVehicles.length > 0) {
-                        setActiveVehicleId(updatedVehicles[0].id);
-                    } else {
-                        setActiveVehicleId('');
-                    }
-                }
-            };
-
-            const handleRestoreData = (newVehicles, newLogs) => {
-                setVehicles(newVehicles);
-                setLogs(newLogs);
-                saveVehicles(newVehicles);
-                saveLogs(newLogs);
-                if (newVehicles.length > 0) {
-                    setActiveVehicleId(newVehicles[0].id);
-                }
-            };
-
-            const NavButton = ({ active, onClick, icon, label }) => (
-                <button
-                    onClick={onClick}
-                    className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium ${active ? 'bg-slate-900 text-white shadow-md' : 'text-slate-500 hover:bg-slate-100 hover:text-slate-900'}`}
-                >
-                    {icon}
-                    <span>{label}</span>
-                </button>
-            );
-
-            const MobileNavButton = ({ active, onClick, icon, label }) => (
-                <button
-                    onClick={onClick}
-                    className={`flex flex-col items-center gap-1 p-2 rounded-xl transition-colors ${active ? 'text-blue-600' : 'text-slate-400'}`}
-                >
-                    {icon}
-                    <span className="text-[10px] font-medium">{label}</span>
-                </button>
-            );
-
-            const renderContent = () => {
-                if (activeView === 'vehicles') {
-                    return <VehicleManager 
-                        vehicles={vehicles} 
-                        logs={logs}
-                        activeVehicleId={activeVehicleId} 
-                        onSetActive={setActiveVehicleId}
-                        onAddVehicle={handleAddVehicle}
-                        onUpdateVehicle={handleUpdateVehicle}
-                        onDeleteVehicle={handleDeleteVehicle}
-                        onRestoreData={handleRestoreData}
-                    />;
-                }
-
-                if (vehicles.length === 0) {
-                    return (
-                        <div className="flex flex-col items-center justify-center h-full text-center p-8">
-                            <div className="bg-blue-100 p-6 rounded-full mb-6 text-blue-600">
-                                <Car size={48} />
+            return (
+                <div className="h-full flex flex-col pb-20">
+                    <div className="flex justify-between items-center mb-4 gap-2">
+                        <select value={filterType} onChange={(e) => setFilterType(e.target.value)} className="bg-white border p-2 rounded-lg text-sm flex-1">
+                            <option value="All">すべて</option>{Object.values(MaintenanceType).map(t => <option key={t} value={t}>{t}</option>)}
+                        </select>
+                        <button onClick={() => setIsModalOpen(true)} className="bg-blue-600 text-white px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-1"><Plus size={16}/> 追加</button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto bg-white rounded-xl border p-2">
+                        {filtered.map(log => (
+                            <div key={log.id} className="flex justify-between items-center p-3 border-b last:border-0">
+                                <div>
+                                    <div className="font-bold text-slate-800">{log.type}</div>
+                                    <div className="text-xs text-slate-500">{log.date.replace(/-/g, '/')} - {log.mileage.toLocaleString()} km</div>
+                                </div>
+                                <div className="flex items-center gap-3">
+                                    <span className="font-bold text-slate-700">¥{log.cost.toLocaleString()}</span>
+                                    <button onClick={() => onDeleteLog(log.id)} className="text-slate-300 hover:text-red-500"><Trash2 size={16}/></button>
+                                </div>
                             </div>
-                            <h2 className="text-2xl font-bold text-slate-900 mb-2">AutoCareへようこそ</h2>
-                            <p className="text-slate-500 mb-8 max-w-md">愛車のメンテナンスをシンプルに管理。「いつやった？次はいつ？」を解決します。</p>
-                            <button 
-                                onClick={() => setActiveView('vehicles')}
-                                className="flex items-center gap-2 px-6 py-3 bg-blue-600 text-white rounded-xl font-semibold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200"
-                            >
-                                <PlusCircle size={20} /> 車両を登録する
-                            </button>
-                            <div className="mt-8 pt-6 border-t border-slate-100 w-full max-w-xs">
-                                <p className="text-xs text-slate-400 mb-2">バックアップをお持ちですか？</p>
-                                <div className="relative">
-                                    <input 
-                                        type="file" 
-                                        accept=".json"
-                                        onChange={(e) => {
-                                            const file = e.target.files[0];
-                                            if(!file) return;
-                                            const reader = new FileReader();
-                                            reader.onload = (event) => {
-                                                try {
-                                                    const data = JSON.parse(event.target.result);
-                                                    handleRestoreData(data.vehicles, data.logs);
-                                                } catch(err) { alert('読み込みエラー'); }
-                                            }
-                                            reader.readAsText(file);
-                                        }}
-                                        className="absolute inset-0 opacity-0 cursor-pointer w-full h-full"
-                                    />
-                                    <button className="w-full py-2 bg-slate-50 border border-slate-200 text-slate-600 text-sm rounded-lg hover:bg-slate-100">
-                                        データを復元する
-                                    </button>
+                        ))}
+                    </div>
+                    {isModalOpen && (
+                        <div className="modal-overlay">
+                            <div className="modal-content bg-white rounded-2xl w-full max-w-md p-6">
+                                <h3 className="font-bold text-lg mb-4">記録を追加</h3>
+                                <div className="space-y-3">
+                                    <input type="date" value={newLog.date} onChange={e => setNewLog({...newLog, date: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <select value={newLog.type} onChange={e => setNewLog({...newLog, type: e.target.value})} className="w-full p-2 border rounded-lg">{Object.values(MaintenanceType).map(t => <option key={t} value={t}>{t}</option>)}</select>
+                                    <input type="number" placeholder="距離" value={newLog.mileage} onChange={e => setNewLog({...newLog, mileage: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <input type="number" placeholder="費用" value={newLog.cost} onChange={e => setNewLog({...newLog, cost: e.target.value})} className="w-full p-2 border rounded-lg" />
+                                    <div className="flex gap-2 mt-4">
+                                        <button onClick={() => setIsModalOpen(false)} className="flex-1 py-2 bg-slate-100 rounded-lg">キャンセル</button>
+                                        <button onClick={handleSubmit} className="flex-1 py-2 bg-blue-600 text-white rounded-lg">保存</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    );
-                }
+                    )}
+                </div>
+            );
+        };
 
-                if (!activeVehicle) return <div>車両を選択してください</div>;
+        const AiAdvisor = ({ vehicle, logs }) => {
+            const [key, setKey] = useState(getApiKey() || '');
+            const [input, setInput] = useState('');
+            const [msgs, setMsgs] = useState([{role: 'model', text: 'AI整備士です。何でも聞いてください。'}]);
+            const [loading, setLoading] = useState(false);
 
-                switch (activeView) {
-                    case 'dashboard':
-                        return <Dashboard 
-                            vehicle={activeVehicle} 
-                            allVehicles={vehicles}
-                            logs={logs} 
-                            onQuickAdd={handleQuickAdd} 
-                            onSwitchVehicle={setActiveVehicleId}
-                        />;
-                    case 'logs':
-                        return <MaintenanceList 
-                            logs={logs} 
-                            vehicle={activeVehicle} 
-                            onAddLog={handleAddLog} 
-                            onDeleteLog={handleDeleteLog} 
-                        />;
-                    case 'advisor':
-                        return <AiAdvisor vehicle={activeVehicle} logs={logs} />;
-                    default:
-                        return <Dashboard vehicle={activeVehicle} logs={logs} onQuickAdd={handleQuickAdd} />;
+            const send = async () => {
+                if (!input || loading) return;
+                const userMsg = { role: 'user', text: input };
+                setMsgs(p => [...p, userMsg]);
+                setInput(''); setLoading(true);
+                saveApiKey(key);
+                const res = await getMaintenanceAdvice(vehicle, userMsg.text, logs, key);
+                setMsgs(p => [...p, { role: 'model', text: res }]);
+                setLoading(false);
+            };
+
+            if (!key) return (
+                <div className="p-8 text-center">
+                    <h2 className="font-bold mb-4">APIキー設定</h2>
+                    <input type="password" placeholder="Gemini API Key" value={key} onChange={e => setKey(e.target.value)} className="w-full p-3 border rounded-xl mb-4" />
+                    <button onClick={() => saveApiKey(key)} className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold">開始</button>
+                    <a href="https://aistudio.google.com/app/apikey" target="_blank" className="text-xs text-blue-500 mt-4 block">APIキーを取得</a>
+                </div>
+            );
+
+            return (
+                <div className="flex flex-col h-full pb-20">
+                    <div className="flex-1 overflow-y-auto p-4 space-y-4">
+                        {msgs.map((m, i) => (
+                            <div key={i} className={`p-4 rounded-2xl text-sm ${m.role === 'user' ? 'bg-slate-800 text-white ml-auto' : 'bg-white border mr-auto'}`} style={{maxWidth: '85%'}}>
+                                <ReactMarkdown>{m.text}</ReactMarkdown>
+                            </div>
+                        ))}
+                        {loading && <div className="text-center text-slate-400 text-xs"><Loader2 className="animate-spin inline mr-1"/> 考え中...</div>}
+                    </div>
+                    <div className="p-4 bg-white border-t flex gap-2">
+                        <input value={input} onChange={e => setInput(e.target.value)} placeholder="質問を入力..." className="flex-1 p-3 bg-slate-100 rounded-xl" />
+                        <button onClick={send} className="bg-blue-600 text-white p-3 rounded-xl"><Send size={20}/></button>
+                    </div>
+                </div>
+            );
+        };
+
+        // --- Main App ---
+        const App = () => {
+            const [view, setView] = useState('dashboard');
+            const [vehicles, setVehicles] = useState([]);
+            const [logs, setLogs] = useState([]);
+            const [activeId, setActiveId] = useState('');
+
+            useEffect(() => {
+                let v = getVehicles(), l = getLogs();
+                if (v.length === 0) { const d = seedData(); v = d.vehicles; l = d.logs; }
+                setVehicles(v); setLogs(l);
+                if (v.length > 0) setActiveId(v[0].id);
+            }, []);
+
+            useEffect(() => { saveVehicles(vehicles); }, [vehicles]);
+            useEffect(() => { saveLogs(logs); }, [logs]);
+
+            const activeVehicle = vehicles.find(v => v.id === activeId) || vehicles[0];
+
+            // 修正: 常に「最新の記録」の日付を上書き、なければ新規作成
+            const handleQuickAdd = (type, date) => {
+                if (!activeVehicle) return;
+                const typeLogs = logs.filter(l => l.vehicleId === activeVehicle.id && l.type === type).sort((a, b) => b.date.localeCompare(a.date));
+                
+                if (typeLogs.length > 0) {
+                    // 最新のログの日付を強制的に変更する（過去・未来問わず入力値を優先）
+                    const targetLog = typeLogs[0];
+                    const updatedLogs = logs.map(l => l.id === targetLog.id ? { ...l, date: date } : l);
+                    setLogs(updatedLogs);
+                } else {
+                    const newLog = { id: Date.now().toString(), vehicleId: activeVehicle.id, date, type, cost: 0, mileage: activeVehicle.currentMileage, notes: 'クイック追加', shopName: '' };
+                    setLogs([newLog, ...logs]);
                 }
+            };
+
+            const handleRestore = (v, l) => { setVehicles(v); setLogs(l); if(v.length > 0) setActiveId(v[0].id); };
+
+            if (!activeVehicle && vehicles.length > 0) setActiveId(vehicles[0].id);
+
+            const renderContent = () => {
+                if (vehicles.length === 0 || view === 'vehicles') return <VehicleManager vehicles={vehicles} logs={logs} activeVehicleId={activeId} onSetActive={setActiveId} onAddVehicle={v => {setVehicles([...vehicles, v]); setActiveId(v.id);}} onUpdateVehicle={v => setVehicles(vehicles.map(x => x.id === v.id ? v : x))} onDeleteVehicle={id => { setVehicles(vehicles.filter(v => v.id !== id)); setLogs(logs.filter(l => l.vehicleId !== id)); }} onRestoreData={handleRestore} />;
+                if (view === 'logs') return <MaintenanceList logs={logs} vehicle={activeVehicle} onAddLog={l => setLogs([l, ...logs])} onDeleteLog={id => setLogs(logs.filter(l => l.id !== id))} />;
+                if (view === 'advisor') return <AiAdvisor vehicle={activeVehicle} logs={logs} />;
+                return <Dashboard vehicle={activeVehicle} allVehicles={vehicles} logs={logs} onQuickAdd={handleQuickAdd} onSwitchVehicle={setActiveId} />;
+            };
+
+            const Nav = ({ mobile }) => {
+                const Cls = mobile ? "flex flex-col items-center gap-1 p-2 text-xs" : "flex items-center gap-3 px-4 py-3 rounded-xl font-bold mb-1";
+                const Act = mobile ? "text-blue-600" : "bg-slate-900 text-white shadow-lg";
+                const Inact = mobile ? "text-slate-400" : "text-slate-500 hover:bg-slate-100";
+                const Btn = ({ v, i, l }) => <button onClick={() => setView(v)} className={`${Cls} ${view === v ? Act : Inact}`}>{i}<span>{l}</span></button>;
+                return <>{[['dashboard',<LayoutDashboard size={20}/>,'ホーム'],['logs',<Wrench size={20}/>,'履歴'],['advisor',<Sparkles size={20}/>,'AI'],['vehicles',<Car size={20}/>,'ガレージ']].map(a => <Btn key={a[0]} v={a[0]} i={a[1]} l={a[2]} />)}</>;
             };
 
             return (
-                <div className="min-h-screen bg-slate-50 flex flex-col md:flex-row">
-                    <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
-                        <h1 className="text-lg font-bold text-slate-800">AutoCare</h1>
-                        {activeVehicle && vehicles.length > 0 && (
-                             <select 
-                                value={activeVehicleId}
-                                onChange={(e) => setActiveVehicleId(e.target.value)}
-                                className="text-xs font-semibold px-2 py-1 bg-slate-100 rounded-lg text-slate-600 border-none focus:ring-0 max-w-[150px] truncate"
-                            >
-                                {vehicles.map(v => (
-                                    <option key={v.id} value={v.id}>{v.make} {v.model}</option>
-                                ))}
-                            </select>
-                        )}
+                <div className="min-h-screen flex flex-col md:flex-row">
+                    <div className="md:hidden bg-white border-b p-4 sticky top-0 z-30 flex justify-between items-center shadow-sm">
+                        <h1 className="font-bold text-lg">AutoCare</h1>
+                        {activeVehicle && <span className="text-xs bg-slate-100 px-2 py-1 rounded text-slate-600">{activeVehicle.make} {activeVehicle.model}</span>}
                     </div>
-
-                    <aside className="hidden md:flex flex-col w-64 bg-white border-r border-slate-200 h-screen sticky top-0">
-                        <div className="p-6 border-b border-slate-100">
-                            <h1 className="text-2xl font-extrabold text-slate-800">AutoCare</h1>
-                            {activeVehicle && (
-                                <div className="mt-4 p-3 bg-slate-50 rounded-lg border border-slate-100">
-                                    <p className="text-xs text-slate-500 uppercase tracking-wide font-semibold">選択中の車両</p>
-                                    <p className="font-bold text-slate-800 truncate">{activeVehicle.make} {activeVehicle.model}</p>
-                                </div>
-                            )}
-                        </div>
-                        
-                        <nav className="flex-1 p-4 space-y-2">
-                            <NavButton active={activeView === 'dashboard'} onClick={() => setActiveView('dashboard')} icon={<LayoutDashboard size={20} />} label="ホーム" />
-                            <NavButton active={activeView === 'logs'} onClick={() => setActiveView('logs')} icon={<Wrench size={20} />} label="履歴一覧" />
-                            <NavButton active={activeView === 'advisor'} onClick={() => setActiveView('advisor')} icon={<Sparkles size={20} />} label="AI相談" />
-                            <NavButton active={activeView === 'vehicles'} onClick={() => setActiveView('vehicles')} icon={<Car size={20} />} label="ガレージ" />
-                        </nav>
+                    <aside className="hidden md:flex flex-col w-64 bg-white border-r h-screen sticky top-0 p-4">
+                        <h1 className="text-2xl font-extrabold mb-8 px-4">AutoCare</h1>
+                        <Nav mobile={false} />
                     </aside>
-
-                    <main className="flex-1 p-4 md:p-8 overflow-y-auto pb-24 md:pb-8 h-full md:h-screen">
-                        <div className="max-w-xl mx-auto h-full">
-                            {renderContent()}
-                        </div>
-                    </main>
-
-                    <nav className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-slate-200 flex justify-around p-3 z-30 pb-safe shadow-lg">
-                        <MobileNavButton active={activeView === 'dashboard'} onClick={() => setActiveView('dashboard')} icon={<LayoutDashboard size={24} />} label="ホーム" />
-                        <MobileNavButton active={activeView === 'logs'} onClick={() => setActiveView('logs')} icon={<Wrench size={24} />} label="履歴" />
-                        <MobileNavButton active={activeView === 'advisor'} onClick={() => setActiveView('advisor')} icon={<Sparkles size={24} />} label="AI" />
-                        <MobileNavButton active={activeView === 'vehicles'} onClick={() => setActiveView('vehicles')} icon={<Car size={24} />} label="車" />
-                    </nav>
+                    <main className="flex-1 p-4 md:p-8 overflow-y-auto h-screen"><div className="max-w-xl mx-auto h-full">{renderContent()}</div></main>
+                    <nav className="md:hidden fixed bottom-0 w-full bg-white border-t flex justify-around p-2 pb-safe z-40 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]"><Nav mobile={true} /></nav>
                 </div>
             );
         };
